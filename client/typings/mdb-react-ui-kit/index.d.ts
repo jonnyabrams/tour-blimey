@@ -1,3 +1,4 @@
+import * as React$1 from "react";
 import React__default, {
   HTMLAttributes,
   RefObject,
@@ -7,7 +8,7 @@ import React__default, {
   ReactElement,
 } from "react";
 
-module "mdb-react-ui-kit" {
+declare module "mdb-react-ui-kit" {
   type BaseComponent = Pick<
     React.HTMLAttributes<HTMLElement>,
     | "className"
@@ -39,7 +40,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBContainer: React$1.FunctionComponent<ContainerProps>;
+  const MDBContainer: React$1.FunctionComponent<ContainerProps>;
 
   interface ColumnProps extends BaseComponent {
     center?: boolean;
@@ -59,7 +60,7 @@ module "mdb-react-ui-kit" {
     xs?: string | number;
   }
 
-  declare const MDBCol: React$1.FunctionComponent<ColumnProps>;
+  const MDBCol: React$1.FunctionComponent<ColumnProps>;
 
   type backgroundColor =
     | "primary"
@@ -97,11 +98,11 @@ module "mdb-react-ui-kit" {
     tag?: React__default.ComponentProps<any>;
   }
 
-  declare const MDBBadge: React$1.FunctionComponent<BadgeProps>;
+  const MDBBadge: React$1.FunctionComponent<BadgeProps>;
 
-  declare type btnProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
-  declare type anchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
-  declare type joinedTypes = btnProps & anchorProps;
+  type btnProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+  type anchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  type joinedTypes = btnProps & anchorProps;
   interface ButtonProps extends Omit<joinedTypes, "size" | "color"> {
     active?: boolean;
     block?: boolean;
@@ -135,7 +136,7 @@ module "mdb-react-ui-kit" {
     to?: string;
   }
 
-  declare const MDBBtn: React$1.FunctionComponent<ButtonProps>;
+  const MDBBtn: React$1.FunctionComponent<ButtonProps>;
 
   type size = "sm" | "lg";
 
@@ -148,7 +149,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBBtnGroup: React$1.FunctionComponent<ButtonGroupProps>;
+  const MDBBtnGroup: React$1.FunctionComponent<ButtonGroupProps>;
 
   interface SpinnerProps extends BaseComponent {
     color?: textColor;
@@ -158,7 +159,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBSpinner: React$1.FunctionComponent<SpinnerProps>;
+  const MDBSpinner: React$1.FunctionComponent<SpinnerProps>;
 
   interface CardProps extends BaseComponent {
     alignment?: string;
@@ -169,7 +170,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBCard: React$1.FunctionComponent<CardProps>;
+  const MDBCard: React$1.FunctionComponent<CardProps>;
 
   interface CardHeaderProps extends BaseComponent {
     border?: string;
@@ -178,35 +179,35 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBCardHeader: React$1.FunctionComponent<CardHeaderProps>;
+  const MDBCardHeader: React$1.FunctionComponent<CardHeaderProps>;
 
   interface CardSubTitleProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.ForwardedRef<HTMLAllCollection>;
   }
 
-  declare const MDBCardSubTitle: React$1.FunctionComponent<CardSubTitleProps>;
+  const MDBCardSubTitle: React$1.FunctionComponent<CardSubTitleProps>;
 
   interface CardTitleProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.ForwardedRef<HTMLAllCollection>;
   }
 
-  declare const MDBCardTitle: React$1.FunctionComponent<CardTitleProps>;
+  const MDBCardTitle: React$1.FunctionComponent<CardTitleProps>;
 
   interface CardTextProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.ForwardedRef<HTMLAllCollection>;
   }
 
-  declare const MDBCardText: React$1.FunctionComponent<CardTextProps>;
+  const MDBCardText: React$1.FunctionComponent<CardTextProps>;
 
   interface CardBodyProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.ForwardedRef<HTMLAllCollection>;
   }
 
-  declare const MDBCardBody: React$1.FunctionComponent<CardBodyProps>;
+  const MDBCardBody: React$1.FunctionComponent<CardBodyProps>;
 
   interface CardFooterProps extends BaseComponent {
     border?: string;
@@ -215,7 +216,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBCardFooter: React$1.FunctionComponent<CardFooterProps>;
+  const MDBCardFooter: React$1.FunctionComponent<CardFooterProps>;
 
   interface CardImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     position?: string;
@@ -223,25 +224,25 @@ module "mdb-react-ui-kit" {
     fluid?: boolean;
   }
 
-  declare const MDBCardImage: React$1.FunctionComponent<CardImageProps>;
+  const MDBCardImage: React$1.FunctionComponent<CardImageProps>;
 
   interface CardOverlayProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.ForwardedRef<HTMLAllCollection>;
   }
 
-  declare const MDBCardOverlay: React$1.FunctionComponent<CardOverlayProps>;
+  const MDBCardOverlay: React$1.FunctionComponent<CardOverlayProps>;
 
-  declare type CardLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+  type CardLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-  declare const MDBCardLink: React$1.FunctionComponent<CardLinkProps>;
+  const MDBCardLink: React$1.FunctionComponent<CardLinkProps>;
 
   interface CardGroupProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.ForwardedRef<HTMLAllCollection>;
   }
 
-  declare const MDBCardGroup: React$1.FunctionComponent<CardGroupProps>;
+  const MDBCardGroup: React$1.FunctionComponent<CardGroupProps>;
 
   interface ListGroupProps extends BaseComponent {
     horizontal?: boolean;
@@ -253,7 +254,7 @@ module "mdb-react-ui-kit" {
     tag?: React__default.ComponentProps<any>;
   }
 
-  declare const MDBListGroup: React$1.FunctionComponent<ListGroupProps>;
+  const MDBListGroup: React$1.FunctionComponent<ListGroupProps>;
 
   interface ListGroupItemProps extends BaseComponent {
     action?: boolean;
@@ -263,7 +264,7 @@ module "mdb-react-ui-kit" {
     tag?: React__default.ComponentProps<any>;
   }
 
-  declare const MDBListGroupItem: React$1.FunctionComponent<ListGroupItemProps>;
+  const MDBListGroupItem: React$1.FunctionComponent<ListGroupItemProps>;
 
   type placement =
     | "top"
@@ -295,7 +296,7 @@ module "mdb-react-ui-kit" {
     onHide?: () => any;
   }
 
-  declare const MDBTooltip: React$1.FunctionComponent<TooltipProps>;
+  const MDBTooltip: React$1.FunctionComponent<TooltipProps>;
 
   interface RowProps extends BaseComponent {
     around?: boolean;
@@ -310,9 +311,9 @@ module "mdb-react-ui-kit" {
     top?: boolean;
   }
 
-  declare const MDBRow: React$1.FunctionComponent<RowProps>;
+  const MDBRow: React$1.FunctionComponent<RowProps>;
 
-  declare type IconProps = {
+  type IconProps = {
     animate?:
       | "beat"
       | "fade"
@@ -362,9 +363,9 @@ module "mdb-react-ui-kit" {
     [rest: string]: any;
   };
 
-  declare const MDBIcon: React$1.FunctionComponent<IconProps>;
+  const MDBIcon: React$1.FunctionComponent<IconProps>;
 
-  declare type TypographyProps = BaseComponent & {
+  type TypographyProps = BaseComponent & {
     blockquote?: boolean;
     color?: textColor;
     listUnStyled?: boolean;
@@ -376,7 +377,7 @@ module "mdb-react-ui-kit" {
     variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   };
 
-  declare const MDBTypography: React$1.FunctionComponent<TypographyProps>;
+  const MDBTypography: React$1.FunctionComponent<TypographyProps>;
 
   interface BreadcrumbProps extends BaseComponent {
     bold?: boolean;
@@ -386,7 +387,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<HTMLOListElement>;
   }
 
-  declare const MDBBreadcrumb: React$1.FunctionComponent<BreadcrumbProps>;
+  const MDBBreadcrumb: React$1.FunctionComponent<BreadcrumbProps>;
 
   interface BreadcrumbItemProp extends BaseComponent {
     active?: boolean;
@@ -394,7 +395,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<HTMLLIElement>;
   }
 
-  declare const MDBBreadcrumbItem: React$1.FunctionComponent<BreadcrumbItemProp>;
+  const MDBBreadcrumbItem: React$1.FunctionComponent<BreadcrumbItemProp>;
 
   interface NavbarProps
     extends Omit<React.AllHTMLAttributes<HTMLElement>, "scrolling"> {
@@ -434,7 +435,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBNavbar: React$1.FunctionComponent<NavbarProps>;
+  const MDBNavbar: React$1.FunctionComponent<NavbarProps>;
 
   interface NavbarLinkProps extends React.AllHTMLAttributes<HTMLElement> {
     tag?: React.ComponentProps<any>;
@@ -443,14 +444,14 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBNavbarLink: React$1.FunctionComponent<NavbarLinkProps>;
+  const MDBNavbarLink: React$1.FunctionComponent<NavbarLinkProps>;
 
   interface NavbarBrandProps extends React.AllHTMLAttributes<HTMLElement> {
     tag?: React.ComponentProps<any>;
     ref?: React.Ref<any>;
   }
 
-  declare const MDBNavbarBrand: React$1.FunctionComponent<NavbarBrandProps>;
+  const MDBNavbarBrand: React$1.FunctionComponent<NavbarBrandProps>;
 
   interface NavbarItemProps extends React.AllHTMLAttributes<HTMLElement> {
     active?: boolean;
@@ -459,7 +460,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBNavbarItem: React$1.FunctionComponent<NavbarItemProps>;
+  const MDBNavbarItem: React$1.FunctionComponent<NavbarItemProps>;
 
   interface NavbarNavProps extends React.AllHTMLAttributes<HTMLElement> {
     tag?: React.ComponentProps<any>;
@@ -469,14 +470,14 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBNavbarNav: React$1.FunctionComponent<NavbarNavProps>;
+  const MDBNavbarNav: React$1.FunctionComponent<NavbarNavProps>;
 
   interface NavbarTogglerProps extends React.AllHTMLAttributes<HTMLElement> {
     tag?: React.ComponentProps<any>;
     ref?: React.Ref<any>;
   }
 
-  declare const MDBNavbarToggler: React$1.FunctionComponent<NavbarTogglerProps>;
+  const MDBNavbarToggler: React$1.FunctionComponent<NavbarTogglerProps>;
 
   interface FooterProps extends BaseComponent {
     color?: textColor;
@@ -485,7 +486,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<HTMLDivElement>;
   }
 
-  declare const MDBFooter: React$1.FunctionComponent<FooterProps>;
+  const MDBFooter: React$1.FunctionComponent<FooterProps>;
 
   interface PaginationProps extends BaseComponent {
     center?: boolean;
@@ -496,7 +497,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<HTMLUListElement>;
   }
 
-  declare const MDBPagination: React$1.FunctionComponent<PaginationProps>;
+  const MDBPagination: React$1.FunctionComponent<PaginationProps>;
 
   interface PaginationLinkProps
     extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -504,7 +505,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBPaginationLink: React$1.FunctionComponent<PaginationLinkProps>;
+  const MDBPaginationLink: React$1.FunctionComponent<PaginationLinkProps>;
 
   interface PaginationItemProps extends BaseComponent {
     active?: boolean;
@@ -512,7 +513,7 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<HTMLLIElement>;
   }
 
-  declare const MDBPaginationItem: React$1.FunctionComponent<PaginationItemProps>;
+  const MDBPaginationItem: React$1.FunctionComponent<PaginationItemProps>;
 
   interface TableProps
     extends Omit<React.TableHTMLAttributes<HTMLTableElement>, "align"> {
@@ -528,18 +529,18 @@ module "mdb-react-ui-kit" {
     responsive?: string | boolean;
   }
 
-  declare const MDBTable: React$1.FunctionComponent<TableProps>;
+  const MDBTable: React$1.FunctionComponent<TableProps>;
 
   interface TableHeadProps extends React.HTMLAttributes<HTMLElement> {
     dark?: boolean;
     light?: boolean;
   }
 
-  declare const MDBTableHead: React$1.FunctionComponent<TableHeadProps>;
+  const MDBTableHead: React$1.FunctionComponent<TableHeadProps>;
 
-  declare type TableBodyProps = React.HTMLAttributes<HTMLElement>;
+  type TableBodyProps = React.HTMLAttributes<HTMLElement>;
 
-  declare const MDBTableBody: React$1.FunctionComponent<TableBodyProps>;
+  const MDBTableBody: React$1.FunctionComponent<TableBodyProps>;
 
   interface ProgressProps extends BaseComponent {
     height?: number | string;
@@ -547,7 +548,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBProgress: React$1.FunctionComponent<ProgressProps>;
+  const MDBProgress: React$1.FunctionComponent<ProgressProps>;
 
   interface ProgressBarProps extends BaseComponent {
     animated?: boolean;
@@ -562,13 +563,13 @@ module "mdb-react-ui-kit" {
     [rest: string]: any;
   }
 
-  declare const MDBProgressBar: React$1.FunctionComponent<ProgressBarProps>;
+  const MDBProgressBar: React$1.FunctionComponent<ProgressBarProps>;
 
-  declare type InputELement = Omit<
+  type InputELement = Omit<
     React__default.InputHTMLAttributes<HTMLInputElement>,
     "size"
   >;
-  declare type InputProps = InputELement & {
+  type InputProps = InputELement & {
     contrast?: boolean;
     label?: React__default.ReactNode;
     labelStyle?: React__default.CSSProperties;
@@ -582,7 +583,7 @@ module "mdb-react-ui-kit" {
     wrapperStyle?: React__default.CSSProperties;
   };
 
-  declare const MDBInput: React$1.FunctionComponent<InputProps>;
+  const MDBInput: React$1.FunctionComponent<InputProps>;
 
   interface InputTemplateProps
     extends React__default.InputHTMLAttributes<HTMLInputElement> {
@@ -600,13 +601,13 @@ module "mdb-react-ui-kit" {
     wrapperStyle?: React__default.CSSProperties;
   }
 
-  declare type CheckboxProps = Omit<InputTemplateProps, "toggleSwitch">;
+  type CheckboxProps = Omit<InputTemplateProps, "toggleSwitch">;
 
-  declare const MDBCheckbox: React$1.FunctionComponent<CheckboxProps>;
+  const MDBCheckbox: React$1.FunctionComponent<CheckboxProps>;
 
-  declare type RadioProps = Omit<InputTemplateProps, "toggleSwitch">;
+  type RadioProps = Omit<InputTemplateProps, "toggleSwitch">;
 
-  declare const MDBRadio: React.FunctionComponent<RadioProps>;
+  const MDBRadio: React.FunctionComponent<RadioProps>;
 
   interface CollapseProps extends HTMLAttributes<HTMLElement> {
     collapseRef?: RefObject<HTMLElement>;
@@ -618,7 +619,7 @@ module "mdb-react-ui-kit" {
     onHide?: () => any;
   }
 
-  declare const MDBCollapse: React$1.FunctionComponent<CollapseProps>;
+  const MDBCollapse: React$1.FunctionComponent<CollapseProps>;
 
   interface DropdownProps extends BaseComponent {
     animation?: boolean;
@@ -634,7 +635,7 @@ module "mdb-react-ui-kit" {
     onShow?: () => any;
   }
 
-  declare const MDBDropdown: ({
+  const MDBDropdown: ({
     animation,
     onHide,
     onShow,
@@ -653,7 +654,7 @@ module "mdb-react-ui-kit" {
     className?: string;
   }
 
-  declare const MDBDropdownItem: FunctionComponent<DropdownItemProps>;
+  const MDBDropdownItem: FunctionComponent<DropdownItemProps>;
 
   interface DropdownMenuProps extends BaseComponent {
     appendToBody?: boolean;
@@ -677,14 +678,14 @@ module "mdb-react-ui-kit" {
     alwaysOpen?: boolean;
   }
 
-  declare const MDBDropdownMenu: FunctionComponent<DropdownMenuProps>;
+  const MDBDropdownMenu: FunctionComponent<DropdownMenuProps>;
 
   interface DropdownToggleProps extends BaseComponent {
     split?: boolean;
     tag?: ComponentProps<any>;
   }
 
-  declare const MDBDropdownToggle: FunctionComponent<DropdownToggleProps>;
+  const MDBDropdownToggle: FunctionComponent<DropdownToggleProps>;
 
   interface PopoverProps extends ButtonProps {
     btnChildren?: React.ReactNode;
@@ -700,20 +701,20 @@ module "mdb-react-ui-kit" {
     onHide?: () => any;
   }
 
-  declare const MDBPopover: React$1.FunctionComponent<PopoverProps>;
+  const MDBPopover: React$1.FunctionComponent<PopoverProps>;
 
   interface PopoverBodyProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBPopoverBody: React$1.FunctionComponent<PopoverBodyProps>;
+  const MDBPopoverBody: React$1.FunctionComponent<PopoverBodyProps>;
 
   interface PopoverHeaderProps
     extends React.AllHTMLAttributes<HTMLHeadElement> {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBPopoverHeader: React$1.FunctionComponent<PopoverHeaderProps>;
+  const MDBPopoverHeader: React$1.FunctionComponent<PopoverHeaderProps>;
 
   interface ModalProps extends BaseComponent {
     animationDirection?: "top" | "bottom" | "right" | "left";
@@ -732,7 +733,7 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModal: React$1.FunctionComponent<ModalProps>;
+  const MDBModal: React$1.FunctionComponent<ModalProps>;
 
   interface ModalDialogProps extends BaseComponent {
     centered?: boolean;
@@ -751,49 +752,49 @@ module "mdb-react-ui-kit" {
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModalDialog: React$1.FunctionComponent<ModalDialogProps>;
+  const MDBModalDialog: React$1.FunctionComponent<ModalDialogProps>;
 
   interface ModalContentProps extends BaseComponent {
     ref?: React.ForwardedRef<HTMLAllCollection>;
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModalContent: React$1.FunctionComponent<ModalContentProps>;
+  const MDBModalContent: React$1.FunctionComponent<ModalContentProps>;
 
   interface ModalHeaderProps extends BaseComponent {
     ref?: React.ForwardedRef<HTMLAllCollection>;
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModalHeader: React$1.FunctionComponent<ModalHeaderProps>;
+  const MDBModalHeader: React$1.FunctionComponent<ModalHeaderProps>;
 
   interface ModalTitleProps extends BaseComponent {
     ref?: React.ForwardedRef<HTMLAllCollection>;
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModalTitle: React$1.FunctionComponent<ModalTitleProps>;
+  const MDBModalTitle: React$1.FunctionComponent<ModalTitleProps>;
 
   interface ModalBodyProps extends BaseComponent {
     ref?: React.ForwardedRef<HTMLAllCollection>;
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModalBody: React$1.FunctionComponent<ModalBodyProps>;
+  const MDBModalBody: React$1.FunctionComponent<ModalBodyProps>;
 
   interface ModalFooterProps extends BaseComponent {
     ref?: React.ForwardedRef<HTMLAllCollection>;
     tag?: React.ComponentProps<any>;
   }
 
-  declare const MDBModalFooter: React$1.FunctionComponent<ModalFooterProps>;
+  const MDBModalFooter: React$1.FunctionComponent<ModalFooterProps>;
 
   interface ScrollspyProps extends BaseComponent {
     container?: Window | React__default.MutableRefObject<any>;
     offset?: number;
   }
 
-  declare const MDBScrollspy: React$1.FunctionComponent<ScrollspyProps>;
+  const MDBScrollspy: React$1.FunctionComponent<ScrollspyProps>;
 
   interface ScrollspyNavLinkProps extends BaseComponent {
     collapsible?: boolean;
@@ -802,17 +803,17 @@ module "mdb-react-ui-kit" {
     targetRef: React__default.MutableRefObject<any>;
   }
 
-  declare const MDBScrollspyNavLink: React$1.FunctionComponent<ScrollspyNavLinkProps>;
+  const MDBScrollspyNavLink: React$1.FunctionComponent<ScrollspyNavLinkProps>;
 
   interface ScrollspySubListProps extends BaseComponent {
     collapsible?: Array<React__default.MutableRefObject<any>>;
   }
 
-  declare const MDBScrollspySubList: React$1.FunctionComponent<ScrollspySubListProps>;
+  const MDBScrollspySubList: React$1.FunctionComponent<ScrollspySubListProps>;
 
-  declare type SwitchProps = Omit<InputTemplateProps, "toggleSwitch">;
+  type SwitchProps = Omit<InputTemplateProps, "toggleSwitch">;
 
-  declare const MDBSwitch: React.FunctionComponent<SwitchProps>;
+  const MDBSwitch: React.FunctionComponent<SwitchProps>;
 
   interface RangeProps
     extends Omit<React__default.InputHTMLAttributes<HTMLInputElement>, "type"> {
@@ -824,7 +825,7 @@ module "mdb-react-ui-kit" {
     inputRef?: React__default.MutableRefObject<any>;
   }
 
-  declare const MDBRange: React__default.FunctionComponent<RangeProps>;
+  const MDBRange: React__default.FunctionComponent<RangeProps>;
 
   interface FileProps
     extends Omit<
@@ -838,9 +839,9 @@ module "mdb-react-ui-kit" {
     size?: string;
   }
 
-  declare const MDBFile: React$1.FunctionComponent<FileProps>;
+  const MDBFile: React$1.FunctionComponent<FileProps>;
 
-  declare type InputGroupProps = Omit<
+  type InputGroupProps = Omit<
     React__default.DetailedHTMLProps<
       React__default.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
@@ -859,7 +860,7 @@ module "mdb-react-ui-kit" {
     textProps?: Record<string, unknown>;
   };
 
-  declare const MDBInputGroup: React$1.FunctionComponent<InputGroupProps>;
+  const MDBInputGroup: React$1.FunctionComponent<InputGroupProps>;
 
   interface RippleProps extends React__default.AllHTMLAttributes<HTMLElement> {
     rippleUnbound?: boolean;
@@ -871,15 +872,14 @@ module "mdb-react-ui-kit" {
     rippleTag?: React__default.ComponentProps<any>;
   }
 
-  declare const MDBRipple: React$1.FunctionComponent<RippleProps>;
+  const MDBRipple: React$1.FunctionComponent<RippleProps>;
 
-  declare type ValidationProps =
-    React__default.FormHTMLAttributes<HTMLFormElement> & {
-      isValidated?: boolean;
-      ref?: React__default.Ref<any>;
-    };
+  type ValidationProps = React__default.FormHTMLAttributes<HTMLFormElement> & {
+    isValidated?: boolean;
+    ref?: React__default.Ref<any>;
+  };
 
-  declare const MDBValidation: React$1.FunctionComponent<ValidationProps>;
+  const MDBValidation: React$1.FunctionComponent<ValidationProps>;
 
   interface TabsProps extends BaseComponent {
     fill?: boolean;
@@ -888,13 +888,13 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBTabs: React$1.FunctionComponent<TabsProps>;
+  const MDBTabs: React$1.FunctionComponent<TabsProps>;
 
   interface TabsItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBTabsItem: React$1.FunctionComponent<TabsItemProps>;
+  const MDBTabsItem: React$1.FunctionComponent<TabsItemProps>;
 
   interface TabsLinkProps
     extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -913,14 +913,14 @@ module "mdb-react-ui-kit" {
     onHide?: () => any;
   }
 
-  declare const MDBTabsLink: React$1.FunctionComponent<TabsLinkProps>;
+  const MDBTabsLink: React$1.FunctionComponent<TabsLinkProps>;
 
   interface TabsContentProps extends BaseComponent {
     tag?: React.ComponentProps<any>;
     ref?: React.Ref<any>;
   }
 
-  declare const MDBTabsContent: React$1.FunctionComponent<TabsContentProps>;
+  const MDBTabsContent: React$1.FunctionComponent<TabsContentProps>;
 
   interface TabsPaneProps extends BaseComponent {
     show?: boolean;
@@ -928,9 +928,9 @@ module "mdb-react-ui-kit" {
     ref?: React.Ref<any>;
   }
 
-  declare const MDBTabsPane: React$1.FunctionComponent<TabsPaneProps>;
+  const MDBTabsPane: React$1.FunctionComponent<TabsPaneProps>;
 
-  declare const MDBCarousel: React$1.FunctionComponent<{
+  const MDBCarousel: React$1.FunctionComponent<{
     asyncData?: any;
     activeItem?: number;
     className?: string;
@@ -945,7 +945,7 @@ module "mdb-react-ui-kit" {
     [rest: string]: any;
   }>;
 
-  declare const MDBCarouselItem: React$1.FunctionComponent<{
+  const MDBCarouselItem: React$1.FunctionComponent<{
     className?: string;
     interval?: number;
     itemId?: number;
@@ -962,7 +962,7 @@ module "mdb-react-ui-kit" {
     tag?: React__default.ComponentProps<any>;
   }
 
-  declare const MDBAccordion: React$1.FunctionComponent<AccordionProps>;
+  const MDBAccordion: React$1.FunctionComponent<AccordionProps>;
 
   interface AccordionItemProps extends BaseComponent {
     bodyClassName?: string;
@@ -975,13 +975,13 @@ module "mdb-react-ui-kit" {
     tag?: React__default.ComponentProps<any>;
   }
 
-  declare const MDBAccordionItem: React$1.FunctionComponent<AccordionItemProps>;
+  const MDBAccordionItem: React$1.FunctionComponent<AccordionItemProps>;
 
-  declare type TextAreaElement = Omit<
+  type TextAreaElement = Omit<
     React__default.TextareaHTMLAttributes<HTMLTextAreaElement>,
     "size" | "value" | "defaultValue"
   >;
-  declare type TextAreaProps = TextAreaElement & {
+  type TextAreaProps = TextAreaElement & {
     contrast?: boolean;
     defaultValue?: string;
     label?: React__default.ReactNode;
@@ -998,7 +998,7 @@ module "mdb-react-ui-kit" {
     wrapperStyle?: Record<string, unknown>;
   };
 
-  declare const MDBTextArea: React$1.FunctionComponent<TextAreaProps>;
+  const MDBTextArea: React$1.FunctionComponent<TextAreaProps>;
 
   interface ValidationItemProps extends BaseComponent {
     tag?: React__default.ComponentProps<any>;
@@ -1007,5 +1007,5 @@ module "mdb-react-ui-kit" {
     tooltip?: boolean;
   }
 
-  declare const MDBValidationItem: React$1.FunctionComponent<ValidationItemProps>;
+  const MDBValidationItem: React$1.FunctionComponent<ValidationItemProps>;
 }
