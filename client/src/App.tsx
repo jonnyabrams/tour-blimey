@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <ToastContainer />
+        <ToastContainer autoClose={1000} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
