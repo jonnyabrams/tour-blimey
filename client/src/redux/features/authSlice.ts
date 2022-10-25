@@ -5,14 +5,15 @@ import { UserType } from "../../../typings/typings";
 
 export const login = createAsyncThunk<UserType, any, any>(
   "auth/login",
-  async ({ formValue, navigate, toast }) => {
+  async ({ formValue, navigate, toast }, {rejectWithValue}) => {
     try {
       const response = await api.signIn(formValue);
       toast.success("Login successful!");
       navigate("/");
       return response.data;
     } catch (error) {
-      console.log(error);
+      // @ts-ignore
+      return rejectWithValue(error.response.data)
     }
   }
 );

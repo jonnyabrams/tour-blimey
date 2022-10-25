@@ -22,9 +22,15 @@ const initialState = {
 
 const Login = () => {
   const [formValue, setFormValue] = useState(initialState);
+  const { loading, error } = useSelector((state: any) => state.auth);
   const { email, password } = formValue;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // only runs when there's an error, as per dependency array
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -32,7 +38,7 @@ const Login = () => {
     // can only log in if email & password are both present
     if (email && password) {
       // @ts-ignore
-      dispatch(login({formValue, navigate, toast}))
+      dispatch(login({ formValue, navigate, toast }));
     }
   };
 
