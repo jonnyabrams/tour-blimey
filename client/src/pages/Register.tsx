@@ -13,6 +13,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
+import { register } from "../redux/features/authSlice";
+
 // import { login } from "../redux/features/authSlice";
 
 const initialState = {
@@ -38,10 +40,14 @@ const Register = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    // if (email && password) {
-    //   // @ts-ignore
-    //   dispatch(login({ formValue, navigate, toast }));
-    // }
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match")
+    }
+
+    if (firstName && lastName && email && password && confirmPassword) {
+      // @ts-ignore
+      dispatch(register({formValue, navigate, toast}))
+    }
   };
 
   const onInputChange = (e: any) => {
