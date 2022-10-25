@@ -4,6 +4,8 @@ import cors from "cors";
 import morgan from "morgan";
 import "dotenv/config";
 
+import userRoutes from "./routes/userRoutes.js";
+
 const app = express();
 
 // middleware
@@ -11,6 +13,8 @@ app.use(morgan("dev"));
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+app.use("/api/user", userRoutes);
 
 const port = process.env.PORT || 8000;
 
