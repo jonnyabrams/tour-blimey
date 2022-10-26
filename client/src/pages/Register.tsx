@@ -10,10 +10,10 @@ import {
   MDBSpinner,
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 import { register } from "../redux/features/authSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 // import { login } from "../redux/features/authSlice";
 
@@ -27,9 +27,9 @@ const initialState = {
 
 const Register = () => {
   const [formValue, setFormValue] = useState(initialState);
-  const { loading, error } = useSelector((state: any) => state.auth);
+  const { loading, error } = useAppSelector((state) => state.auth);
   const { firstName, lastName, email, password, confirmPassword } = formValue;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   // only runs when there's an error, as per dependency array
@@ -41,12 +41,12 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      return toast.error("Passwords do not match")
+      return toast.error("Passwords do not match");
     }
 
     if (firstName && lastName && email && password && confirmPassword) {
       // @ts-ignore
-      dispatch(register({formValue, navigate, toast}))
+      dispatch(register({ formValue, navigate, toast }));
     }
   };
 

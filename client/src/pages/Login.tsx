@@ -10,10 +10,10 @@ import {
   MDBSpinner,
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 import { login } from "../redux/features/authSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const initialState = {
   email: "",
@@ -22,9 +22,9 @@ const initialState = {
 
 const Login = () => {
   const [formValue, setFormValue] = useState(initialState);
-  const { loading, error } = useSelector((state: any) => state.auth);
+  const { loading, error } = useAppSelector((state) => state.auth);
   const { email, password } = formValue;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   // only runs when there's an error, as per dependency array
@@ -37,7 +37,6 @@ const Login = () => {
 
     // can only log in if email & password are both present
     if (email && password) {
-      // @ts-ignore
       dispatch(login({ formValue, navigate, toast }));
     }
   };

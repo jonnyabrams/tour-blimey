@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import * as api from "../api";
 import { ILogin, IRegister, UserType } from "../../../typings/typings";
+import { RootState } from "../store";
 
 export const register = createAsyncThunk<IRegister, any, any>(
   "auth/register",
@@ -81,5 +82,8 @@ const authSlice = createSlice({
     });
   },
 });
+
+// User Selector
+export const selectUser = (state: RootState) => state.auth.user;
 
 export default authSlice.reducer;
