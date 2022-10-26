@@ -6,7 +6,7 @@ import { RootState } from "../store";
 
 export const register = createAsyncThunk<IRegister, any, any>(
   "auth/register",
-  async ({ formValue, navigate, toast }, {rejectWithValue}) => {
+  async ({ formValue, navigate, toast }, { rejectWithValue }) => {
     try {
       const response = await api.signUp(formValue);
       toast.success("Signup successful!");
@@ -14,14 +14,14 @@ export const register = createAsyncThunk<IRegister, any, any>(
       return response.data;
     } catch (error) {
       // @ts-ignore
-      return rejectWithValue(error.response.data)
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
 export const login = createAsyncThunk<ILogin, any, any>(
   "auth/login",
-  async ({ formValue, navigate, toast }, {rejectWithValue}) => {
+  async ({ formValue, navigate, toast }, { rejectWithValue }) => {
     try {
       const response = await api.signIn(formValue);
       toast.success("Login successful!");
@@ -29,7 +29,7 @@ export const login = createAsyncThunk<ILogin, any, any>(
       return response.data;
     } catch (error) {
       // @ts-ignore
-      return rejectWithValue(error.response.data)
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -41,7 +41,12 @@ const authSlice = createSlice({
     error: "",
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    // persist the user (doesn't get lost on refresh)
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
     builder.addCase(login.pending, (state, action) => {
@@ -59,7 +64,7 @@ const authSlice = createSlice({
         state.error = action.payload.message;
       } else {
         // @ts-ignore
-        state.error = action.error.message
+        state.error = action.error.message;
       }
     });
     builder.addCase(register.pending, (state, action) => {
@@ -77,11 +82,13 @@ const authSlice = createSlice({
         state.error = action.payload.message;
       } else {
         // @ts-ignore
-        state.error = action.error.message
+        state.error = action.error.message;
       }
     });
   },
 });
+
+export const { setUser } = authSlice.actions;
 
 // User Selector
 export const selectUser = (state: RootState) => state.auth.user;
