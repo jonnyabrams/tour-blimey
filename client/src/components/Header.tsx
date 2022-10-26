@@ -12,9 +12,17 @@ import {
 } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
 
+import { useAppDispatch } from "../hooks";
+import { setLogout } from "../redux/features/authSlice";
+
 const Header = () => {
   const [show, setShow] = useState(false);
   const { user } = useSelector((state: any) => state.auth);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(setLogout())
+  }
 
   return (
     <MDBNavbar fixed="top" expand="lg" style={{ backgroundColor: "#f0e6ea" }}>
@@ -60,7 +68,7 @@ const Header = () => {
             {user?.user?._id ? (
               <MDBNavbarItem>
                 <MDBNavbarLink href="/login">
-                  <p className="header-text">Log out</p>
+                  <p className="header-text" onClick={handleLogout}>Log out</p>
                 </MDBNavbarLink>
               </MDBNavbarItem>
             ) : (

@@ -46,6 +46,10 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setLogout: (state) => {
+      localStorage.clear();
+      state.user = {};
+    },
   },
   extraReducers: (builder) => {
     // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
@@ -88,7 +92,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, setLogout } = authSlice.actions;
 
 // User Selector
 export const selectUser = (state: RootState) => state.auth.user;
