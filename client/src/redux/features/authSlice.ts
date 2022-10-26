@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import * as api from "../api";
-import { UserType } from "../../../typings/typings";
+import { ILogin, IRegister, UserType } from "../../../typings/typings";
 
-export const login = createAsyncThunk<UserType, any, any>(
-  "auth/login",
+export const register = createAsyncThunk<IRegister, any, any>(
+  "auth/register",
   async ({ formValue, navigate, toast }, {rejectWithValue}) => {
     try {
-      const response = await api.signIn(formValue);
-      toast.success("Login successful!");
+      const response = await api.signUp(formValue);
+      toast.success("Signup successful!");
       navigate("/");
       return response.data;
     } catch (error) {
@@ -18,12 +18,12 @@ export const login = createAsyncThunk<UserType, any, any>(
   }
 );
 
-export const register = createAsyncThunk<UserType, any, any>(
-  "auth/register",
+export const login = createAsyncThunk<ILogin, any, any>(
+  "auth/login",
   async ({ formValue, navigate, toast }, {rejectWithValue}) => {
     try {
-      const response = await api.signUp(formValue);
-      toast.success("Signup successful!");
+      const response = await api.signIn(formValue);
+      toast.success("Login successful!");
       navigate("/");
       return response.data;
     } catch (error) {
