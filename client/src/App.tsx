@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import { useAppDispatch } from "./hooks";
 import { setUser } from "./redux/features/authSlice";
+import AddEditTour from "./pages/AddEditTour";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -19,9 +20,9 @@ const App = () => {
 
   // on each render, dispatch user found
   useEffect(() => {
-    dispatch(setUser(user))
-  }, [])
-  
+    dispatch(setUser(user));
+  }, []);
+
   return (
     <Router>
       <div className="App">
@@ -31,6 +32,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/add-tour" element={<AddEditTour />} />
+          <Route path="/edit-tour/:id" element={<AddEditTour />} />
         </Routes>
       </div>
     </Router>
