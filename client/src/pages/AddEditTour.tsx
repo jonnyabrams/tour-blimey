@@ -14,20 +14,33 @@ import { useNavigate } from "react-router-dom";
 const initialState = {
   title: "",
   description: "",
-  tags: "",
+  tags: [],
   imageFile: "",
 };
 
 const AddEditTour = () => {
   const [tourData, setTourData] = useState(initialState);
 
-  const { title, description, tags } = initialState;
+  const { title, description, tags } = tourData;
 
-  const onInputChange = () => {};
+  const onInputChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === "tags") {
+      setTourData({ ...tourData, [name]: value.split(",") });
+    } else {
+      setTourData({ ...tourData, [name]: value })
+    }
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(tourData);
+  };
 
-  const handleClear = () => {};
+  const handleClear = () => {
+    setTourData({ title: "", description: "", tags: [], imageFile: "" });
+    console.log(tourData)
+  };
 
   return (
     <div
