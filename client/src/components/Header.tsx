@@ -21,8 +21,8 @@ const Header = () => {
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    dispatch(setLogout())
-  }
+    dispatch(setLogout());
+  };
 
   return (
     <MDBNavbar fixed="top" expand="lg" style={{ backgroundColor: "#f0e6ea" }}>
@@ -44,6 +44,11 @@ const Header = () => {
         </MDBNavbarToggler>
         <MDBCollapse show={show} navbar>
           <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
+            {user?.user?._id && (
+              <h5 style={{ marginRight: "30px", marginTop: "17px" }}>
+                Logged in as {user?.user?.name}
+              </h5>
+            )}
             <MDBNavbarItem>
               <MDBNavbarLink href="/">
                 <p className="header-text">Home</p>
@@ -68,7 +73,9 @@ const Header = () => {
             {user?.user?._id ? (
               <MDBNavbarItem>
                 <MDBNavbarLink href="/login">
-                  <p className="header-text" onClick={handleLogout}>Log out</p>
+                  <p className="header-text" onClick={handleLogout}>
+                    Log out
+                  </p>
                 </MDBNavbarLink>
               </MDBNavbarItem>
             ) : (
