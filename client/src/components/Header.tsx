@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const [show, setShow] = useState(false);
-  const {user} = useSelector((state: any) => state.auth)
+  const { user } = useSelector((state: any) => state.auth);
 
   return (
     <MDBNavbar fixed="top" expand="lg" style={{ backgroundColor: "#f0e6ea" }}>
@@ -41,26 +41,35 @@ const Header = () => {
                 <p className="header-text">Home</p>
               </MDBNavbarLink>
             </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href="/add-tour">
-                <p className="header-text">Add Tour</p>
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href="/dashboard">
-                <p className="header-text">Dashboard</p>
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href="/login">
-                <p className="header-text">Log in</p>
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href="/login">
-                <p className="header-text">Log out</p>
-              </MDBNavbarLink>
-            </MDBNavbarItem>
+            {/* check for id on user object from user returned from state */}
+            {user?.user?._id && (
+              <>
+                <MDBNavbarItem>
+                  <MDBNavbarLink href="/add-tour">
+                    <p className="header-text">Add Tour</p>
+                  </MDBNavbarLink>
+                </MDBNavbarItem>
+                <MDBNavbarItem>
+                  <MDBNavbarLink href="/dashboard">
+                    <p className="header-text">Dashboard</p>
+                  </MDBNavbarLink>
+                </MDBNavbarItem>
+              </>
+            )}
+
+            {user?.user?._id ? (
+              <MDBNavbarItem>
+                <MDBNavbarLink href="/login">
+                  <p className="header-text">Log out</p>
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+            ) : (
+              <MDBNavbarItem>
+                <MDBNavbarLink href="/login">
+                  <p className="header-text">Log in</p>
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+            )}
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
