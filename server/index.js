@@ -5,6 +5,7 @@ import morgan from "morgan";
 import "dotenv/config";
 
 import userRoutes from "./routes/userRoutes.js";
+import tourRoutes from "./routes/tourRoutes.js";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(
 );
 
 app.use("/api/user", userRoutes);
+app.use("/api/tour", tourRoutes)
 
 const port = process.env.PORT || 8000;
 
