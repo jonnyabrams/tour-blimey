@@ -7,6 +7,19 @@ export type UserType = {
   id: ObjectId;
 };
 
+export type TourType = {
+  title: string;
+  description: string;
+  name: string;
+  creator: string;
+  tags: string[];
+  imageFile: string;
+  likeCount: {
+    type: number;
+    default: number;
+  };
+};
+
 export interface IRegister {
   firstName: string;
   lastName: string;
