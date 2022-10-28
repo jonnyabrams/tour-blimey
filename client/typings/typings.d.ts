@@ -31,3 +31,16 @@ export interface ILogin {
   email: string;
   password: string;
 }
+
+export interface ICreateTourData {
+  title: string;
+  description: string;
+  tags: string[];
+  imageFile: string;
+  name?: string;
+  creator?: string;
+  likeCount?: {
+    type: number,
+    default: number,
+  },
+}
