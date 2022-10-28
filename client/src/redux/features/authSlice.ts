@@ -50,6 +50,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     });
     builder.addCase(login.rejected, (state, Error) => {
+      state.loading = false;
       state.error = "Something went wrong";
       console.log(Error);
     });
@@ -62,6 +63,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     });
     builder.addCase(register.rejected, (state, Error) => {
+      state.loading = false;
       state.error = "Something went wrong";
       console.log(Error);
     });

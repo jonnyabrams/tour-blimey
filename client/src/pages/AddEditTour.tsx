@@ -54,7 +54,7 @@ const AddEditTour = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (title && description && tags) {
-      const createdTourData = { ...tourData, name: user?.user?.name };
+      const createdTourData = { ...tourData, name: user?.user?.name, creator: user?.user?._id };
       dispatch(createTour(createdTourData));
       navigate("/");
     }

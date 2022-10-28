@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-import { ICreateTourData, TourType } from "../../../typings/typings";
+import { ICreateTourData } from "../../../typings/typings";
 
 import * as api from "../api";
 
@@ -26,25 +26,20 @@ const tourSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
-    builder.addCase(createTour.pending, (state, action) => {
+    builder.addCase(createTour.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
       createTour.fulfilled,
       (state, action: PayloadAction<ICreateTourData>) => {
         state.loading = false;
-        state.tours = [action.payload];
+        // state.tours.push(action.payload);
       }
     );
-    builder.addCase(createTour.rejected, (state, action) => {
-      if (action.payload) {
-        state.loading = false;
-        // @ts-ignore
-        state.error = action.payload.message;
-      } else {
-        // @ts-ignore
-        state.error = action.error.message;
-      }
+    builder.addCase(createTour.rejected, (state, Error) => {
+      state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
     });
   },
 });

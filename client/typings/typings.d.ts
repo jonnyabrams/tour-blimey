@@ -11,7 +11,7 @@ export type TourType = {
   title: string;
   description: string;
   name?: string;
-  creator?: string;
+  creator?: ObjectId;
   tags: string[];
   imageFile: string;
   likeCount?: {
@@ -38,7 +38,7 @@ export interface ICreateTourData {
   tags: string[];
   imageFile: string;
   name?: string;
-  creator?: string;
+  creator?: ObjectId;
   likeCount?: {
     type: number;
     default: number;
