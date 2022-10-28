@@ -37,7 +37,7 @@ const Register = () => {
     error && toast.error(error);
   }, [error]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -50,7 +50,7 @@ const Register = () => {
     }
   };
 
-  const onInputChange = (e: any) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };

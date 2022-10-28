@@ -1,9 +1,8 @@
 import Tour from "../models/Tour.js";
-import mongoose from "mongoose";
 
 export const createTour = async (req, res) => {
   const tour = req.body;
-  const newTour = new Tour(tour);
+  const newTour = new Tour({...tour, creator: req.userId});
 
   try {
     await newTour.save();

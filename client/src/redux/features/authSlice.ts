@@ -1,8 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import * as api from "../api";
-import { ILogin, IRegister } from "../../../typings/typings";
+import { ILogin, IRegister, IUserState, UserType } from "../../../typings/typings";
 import { RootState } from "../store";
+
+const initialState: IUserState = {
+  user: null,
+  error: "",
+  loading: false,
+};
 
 export const register = createAsyncThunk<IRegister, any, any>(
   "auth/register",
@@ -36,11 +42,7 @@ export const login = createAsyncThunk<ILogin, any, any>(
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: {},
-    error: "",
-    loading: false,
-  },
+  initialState,
   reducers: {
     // persist the user (doesn't get lost on refresh)
     setUser: (state, action) => {
@@ -48,17 +50,19 @@ const authSlice = createSlice({
     },
     setLogout: (state) => {
       localStorage.clear();
-      state.user = {};
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
     // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
-    builder.addCase(login.pending, (state, action) => {
+    builder.addCase(login.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(login.fulfilled, (state, action) => {
+      console.log(action)
       state.loading = false;
       localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      // @ts-ignore
       state.user = action.payload;
     });
     builder.addCase(login.rejected, (state, action) => {
@@ -77,6 +81,7 @@ const authSlice = createSlice({
     builder.addCase(register.fulfilled, (state, action) => {
       state.loading = false;
       localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      // @ts-ignore
       state.user = action.payload;
     });
     builder.addCase(register.rejected, (state, action) => {

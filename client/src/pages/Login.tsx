@@ -32,7 +32,7 @@ const Login = () => {
     error && toast.error(error);
   }, [error]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     // can only log in if email & password are both present
@@ -41,7 +41,7 @@ const Login = () => {
     }
   };
 
-  const onInputChange = (e: any) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };

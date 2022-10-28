@@ -11,7 +11,18 @@ import FileBase from "react-file-base64";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const initialState = {
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { TourType } from "../../typings/typings";
+import { createTour } from "../redux/features/tourSlice";
+
+interface IFormData {
+  title: string;
+  description: string;
+  tags: string[];
+  imageFile: string;
+}
+
+const initialState: IFormData = {
   title: "",
   description: "",
   tags: [],
@@ -19,27 +30,38 @@ const initialState = {
 };
 
 const AddEditTour = () => {
-  const [tourData, setTourData] = useState(initialState);
-
+  const [tourData, setTourData] = useState<TourType>(initialState);
+  const { error, loading } = useAppSelector((state) => state.tour);
+  const { user } = useAppSelector((state) => state.auth);
   const { title, description, tags } = tourData;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  // only runs if there's an error
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   const onInputChange = (e: any) => {
     const { name, value } = e.target;
     if (name === "tags") {
       setTourData({ ...tourData, [name]: value.split(",") });
     } else {
-      setTourData({ ...tourData, [name]: value })
+      setTourData({ ...tourData, [name]: value });
     }
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(tourData);
+    if (title && description && tags) {
+      const createdTourData = { ...tourData, name: user?.user?.name };
+      dispatch(createTour({ createdTourData, navigate, toast }));
+    }
+    handleClear();
   };
 
   const handleClear = () => {
     setTourData({ title: "", description: "", tags: [], imageFile: "" });
-    console.log(tourData)
   };
 
   return (

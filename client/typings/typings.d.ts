@@ -1,20 +1,20 @@
 import { ObjectId } from "mongoose";
 
 export type UserType = {
-  name: string;
+  name?: string;
   email: string;
   password: string;
-  id: ObjectId;
+  id?: ObjectId;
 };
 
 export type TourType = {
   title: string;
   description: string;
-  name: string;
-  creator: string;
+  name?: string;
+  creator?: string;
   tags: string[];
   imageFile: string;
-  likeCount: {
+  likeCount?: {
     type: number;
     default: number;
   };
@@ -40,7 +40,18 @@ export interface ICreateTourData {
   name?: string;
   creator?: string;
   likeCount?: {
-    type: number,
-    default: number,
-  },
+    type: number;
+    default: number;
+  };
+}
+
+export interface IUser {
+  user: UserType;
+  token: string;
+}
+
+export interface IUserState {
+  user: IUser | null;
+  error: string;
+  loading: boolean;
 }
