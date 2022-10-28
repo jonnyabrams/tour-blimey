@@ -4,7 +4,7 @@ export type UserType = {
   name?: string;
   email: string;
   password: string;
-  id?: ObjectId;
+  _id?: ObjectId;
 };
 
 export type TourType = {

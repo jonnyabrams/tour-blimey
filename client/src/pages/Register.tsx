@@ -15,8 +15,6 @@ import { toast } from "react-toastify";
 import { register } from "../redux/features/authSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 
-// import { login } from "../redux/features/authSlice";
-
 const initialState = {
   firstName: "",
   lastName: "",
@@ -45,8 +43,8 @@ const Register = () => {
     }
 
     if (firstName && lastName && email && password && confirmPassword) {
-      // @ts-ignore
-      dispatch(register({ formValue, navigate, toast }));
+      dispatch(register(formValue));
+      navigate("/")
     }
   };
 

@@ -37,7 +37,8 @@ const Login = () => {
 
     // can only log in if email & password are both present
     if (email && password) {
-      dispatch(login({ formValue, navigate, toast }));
+      dispatch(login(formValue));
+      navigate("/")
     }
   };
 

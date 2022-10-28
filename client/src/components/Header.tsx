@@ -10,14 +10,13 @@ import {
   MDBCollapse,
   MDBNavbarBrand,
 } from "mdb-react-ui-kit";
-import { useSelector } from "react-redux";
 
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { setLogout } from "../redux/features/authSlice";
 
 const Header = () => {
   const [show, setShow] = useState(false);
-  const { user } = useSelector((state: any) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {

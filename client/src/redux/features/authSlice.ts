@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import * as api from "../api";
-import { ILogin, IRegister, IUserState, UserType } from "../../../typings/typings";
+import { ILogin, IRegister, IUserState } from "../../../typings/typings";
 import { RootState } from "../store";
 
 const initialState: IUserState = {
@@ -10,33 +10,19 @@ const initialState: IUserState = {
   loading: false,
 };
 
-export const register = createAsyncThunk<IRegister, any, any>(
+export const register = createAsyncThunk(
   "auth/register",
-  async ({ formValue, navigate, toast }, { rejectWithValue }) => {
-    try {
-      const response = await api.signUp(formValue);
-      toast.success("Signup successful!");
-      navigate("/");
-      return response.data;
-    } catch (error) {
-      // @ts-ignore
-      return rejectWithValue(error.response.data);
-    }
+  async (formValue: IRegister) => {
+    const response = await api.signUp(formValue);
+    return response.data;
   }
 );
 
-export const login = createAsyncThunk<ILogin, any, any>(
+export const login = createAsyncThunk(
   "auth/login",
-  async ({ formValue, navigate, toast }, { rejectWithValue }) => {
-    try {
-      const response = await api.signIn(formValue);
-      toast.success("Login successful!");
-      navigate("/");
-      return response.data;
-    } catch (error) {
-      // @ts-ignore
-      return rejectWithValue(error.response.data);
-    }
+  async (formValue: ILogin) => {
+    const response = await api.signIn(formValue);
+    return response.data;
   }
 );
 
@@ -59,40 +45,25 @@ const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action)
       state.loading = false;
       localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
-      // @ts-ignore
       state.user = action.payload;
     });
-    builder.addCase(login.rejected, (state, action) => {
-      if (action.payload) {
-        state.loading = false;
-        // @ts-ignore
-        state.error = action.payload.message;
-      } else {
-        // @ts-ignore
-        state.error = action.error.message;
-      }
+    builder.addCase(login.rejected, (state, Error) => {
+      state.error = "Something went wrong";
+      console.log(Error);
     });
-    builder.addCase(register.pending, (state, action) => {
+    builder.addCase(register.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(register.fulfilled, (state, action) => {
       state.loading = false;
       localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
-      // @ts-ignore
       state.user = action.payload;
     });
-    builder.addCase(register.rejected, (state, action) => {
-      if (action.payload) {
-        state.loading = false;
-        // @ts-ignore
-        state.error = action.payload.message;
-      } else {
-        // @ts-ignore
-        state.error = action.error.message;
-      }
+    builder.addCase(register.rejected, (state, Error) => {
+      state.error = "Something went wrong";
+      console.log(Error);
     });
   },
 });
