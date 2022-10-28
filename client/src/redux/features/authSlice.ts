@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import * as api from "../api";
 import { ILogin, IRegister, IUserState } from "../../../typings/typings";

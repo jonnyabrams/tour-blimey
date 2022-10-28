@@ -55,7 +55,8 @@ const AddEditTour = () => {
     e.preventDefault();
     if (title && description && tags) {
       const createdTourData = { ...tourData, name: user?.user?.name };
-      dispatch(createTour({ createdTourData, navigate, toast }));
+      dispatch(createTour(createdTourData));
+      navigate("/");
     }
     handleClear();
   };

@@ -4,18 +4,11 @@ import { ICreateTourData, TourType } from "../../../typings/typings";
 
 import * as api from "../api";
 
-export const createTour = createAsyncThunk<ICreateTourData, any, any>(
+export const createTour = createAsyncThunk(
   "tour/createTour",
-  async ({ createdTourData, navigate, toast }, { rejectWithValue }) => {
-    try {
-      const response = await api.createTour(createdTourData);
-      toast.success("Tour added successfully!");
-      navigate("/");
-      return response.data;
-    } catch (error) {
-      // @ts-ignore
-      return rejectWithValue(error.response.data);
-    }
+  async (createdTourData: ICreateTourData) => {
+    const response = await api.createTour(createdTourData);
+    return response.data;
   }
 );
 
