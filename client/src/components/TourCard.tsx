@@ -9,16 +9,9 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 import { TourType } from "../../typings/typings";
+import { excerpt } from "../helpers";
 
 const TourCard = ({ tour }: { tour: TourType }) => {
-  // reduce length of the tour description
-  const excerpt = (str: string) => {
-    if (str.length > 45) {
-      str = str.substring(0, 45) + "...";
-    }
-    return str;
-  };
-
   return (
     <MDBCardGroup>
       <MDBCard className="h-100 mt-2 d-sm-flex" style={{ maxWidth: "20rem" }}>
