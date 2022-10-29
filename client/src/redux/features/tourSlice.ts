@@ -38,6 +38,14 @@ export const getTour = createAsyncThunk(
   }
 );
 
+export const getToursByUser = createAsyncThunk(
+  "tour/getToursByUser",
+  async (id: ObjectId) => {
+    const response = await api.getToursByUser(id);
+    return response.data;
+  }
+);
+
 const tourSlice = createSlice({
   name: "tour",
   initialState,
@@ -82,6 +90,18 @@ const tourSlice = createSlice({
       state.tour = action.payload;
     });
     builder.addCase(getTour.rejected, (state, Error) => {
+      state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
+    });
+    builder.addCase(getToursByUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getToursByUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userTours = action.payload;
+    });
+    builder.addCase(getToursByUser.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
       state.error = "Something went wrong";
