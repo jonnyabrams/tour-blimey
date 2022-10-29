@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { TourType } from "../../typings/typings";
+import { ICreateTourData } from "../../typings/typings";
 import { createTour } from "../redux/features/tourSlice";
 
 interface IFormData {
@@ -30,7 +30,7 @@ const initialState: IFormData = {
 };
 
 const AddEditTour = () => {
-  const [tourData, setTourData] = useState<TourType>(initialState);
+  const [tourData, setTourData] = useState<ICreateTourData>(initialState);
   const { error, loading } = useAppSelector((state) => state.tour);
   const { user } = useAppSelector((state) => state.auth);
   const { title, description, tags } = tourData;

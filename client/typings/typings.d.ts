@@ -19,6 +19,7 @@ export type TourType = {
     type: number;
     default: number;
   };
+  _id: ObjectId;
 };
 
 export interface IRegister {

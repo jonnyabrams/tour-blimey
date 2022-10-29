@@ -1,9 +1,8 @@
 import { MDBCol, MDBContainer, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { TourType } from "../../typings/typings";
 import TourCard from "../components/TourCard";
-
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { getAllTours } from "../redux/features/tourSlice";
 
@@ -39,7 +38,9 @@ const Home = () => {
           <MDBContainer>
             <MDBRow className="row-cols-1 row-cols-md-3 g-2">
               {tours &&
-                tours.map((item: TourType, index: number) => <TourCard />)}
+                tours.map((tour: TourType, index: number) => (
+                  <TourCard tour={tour} key={index} />
+                ))}
             </MDBRow>
           </MDBContainer>
         </MDBCol>
