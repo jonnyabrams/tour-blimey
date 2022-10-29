@@ -1,4 +1,5 @@
 import { ObjectId } from "mongoose";
+import { Subscription } from "react-redux";
 
 export type UserType = {
   name?: string;
@@ -52,6 +53,14 @@ export interface IUser {
 
 export interface IUserState {
   user: IUser | null;
+  error: string;
+  loading: boolean;
+}
+
+export interface IToursState {
+  tour: TourType | null;
+  tours: Subscription<TourType[]>;
+  userTours: Subscription<TourType[]>;
   error: string;
   loading: boolean;
 }

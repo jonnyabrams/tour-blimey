@@ -8,3 +8,4 @@ export const signUp = (formData: IRegister) => API.post("/user/register", formDa
 export const signIn = (formData: ILogin) => API.post("/user/login", formData);
 
 export const createTour = (tourData: ICreateTourData) => API.post("/tour", tourData)
+export const getAllTours = () => API.get("/tour")
