@@ -12,6 +12,7 @@ import Tour from "./pages/Tour";
 import AddEditTour from "./pages/AddEditTour";
 import { useAppDispatch } from "./hooks";
 import { setUser } from "./redux/features/authSlice";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/add-tour" element={<AddEditTour />} />
           <Route path="/edit-tour/:id" element={<AddEditTour />} />
           <Route path="/tour/:id" element={<Tour />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

@@ -6,7 +6,7 @@ import TourReducer from "./features/tourSlice";
 export const store = configureStore({
   reducer: {
     auth: AuthReducer,
-    tour: TourReducer
+    tour: TourReducer,
   },
 });
 
