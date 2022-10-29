@@ -31,14 +31,14 @@ code {
   color: #806a78;
 }
 
-.tourName {
+.tour-name {
   color: "#F48FB1";
   font-size: 18px;
   margin: 0 0 0 4px;
   font-weight: 500;
 }
 
-.tagErrMsg {
+.tag-err-msg {
   color: #f93154;
   margin-top: 5px;
   text-align: left;

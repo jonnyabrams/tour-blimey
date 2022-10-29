@@ -17,10 +17,7 @@ import { setLogout } from "../redux/features/authSlice";
 const Header = () => {
   const [show, setShow] = useState(false);
   const { user } = useAppSelector((state) => state.auth);
-  const { tours } = useAppSelector((state) => state.tour);
   const dispatch = useAppDispatch();
-
-  console.log(tours)
 
   const handleLogout = () => {
     dispatch(setLogout());

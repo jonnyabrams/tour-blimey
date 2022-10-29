@@ -20,6 +20,7 @@ export type TourType = {
     default: number;
   };
   _id: ObjectId;
+  createdAt: Date;
 };
 
 export interface IRegister {
@@ -45,6 +46,7 @@ export interface ICreateTourData {
     type: number;
     default: number;
   };
+  _id?: ObjectId;
 }
 
 export interface IUser {

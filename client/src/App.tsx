@@ -8,9 +8,10 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Header from "./components/Header";
+import Tour from "./pages/Tour";
+import AddEditTour from "./pages/AddEditTour";
 import { useAppDispatch } from "./hooks";
 import { setUser } from "./redux/features/authSlice";
-import AddEditTour from "./pages/AddEditTour";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/add-tour" element={<AddEditTour />} />
           <Route path="/edit-tour/:id" element={<AddEditTour />} />
+          <Route path="/tour/:id" element={<Tour />} />
         </Routes>
       </div>
     </Router>

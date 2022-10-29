@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { ObjectId } from "mongoose";
 
-import { ICreateTourData, IToursState } from "../../../typings/typings";
+import {
+  ICreateTourData,
+  IToursState,
+  TourType,
+} from "../../../typings/typings";
 
 import * as api from "../api";
 
@@ -24,6 +29,14 @@ export const getAllTours = createAsyncThunk("tour/getAllTours", async () => {
   const response = await api.getAllTours();
   return response.data;
 });
+
+export const getTour = createAsyncThunk(
+  "tour/getTour",
+  async (id: ObjectId) => {
+    const response = await api.getTour(id);
+    return response.data;
+  }
+);
 
 const tourSlice = createSlice({
   name: "tour",
@@ -51,12 +64,24 @@ const tourSlice = createSlice({
     });
     builder.addCase(
       getAllTours.fulfilled,
-      (state, action: PayloadAction<ICreateTourData>) => {
+      (state, action: PayloadAction<TourType[]>) => {
         state.loading = false;
         state.tours = action.payload;
       }
     );
     builder.addCase(getAllTours.rejected, (state, Error) => {
+      state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
+    });
+    builder.addCase(getTour.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getTour.fulfilled, (state, action) => {
+      state.loading = false;
+      state.tour = action.payload;
+    });
+    builder.addCase(getTour.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
       state.error = "Something went wrong";
