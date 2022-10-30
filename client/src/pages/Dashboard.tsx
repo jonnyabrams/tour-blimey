@@ -18,6 +18,8 @@ import { deleteTour, getToursByUser } from "../redux/features/tourSlice";
 import { TourType } from "../../typings/typings";
 import { excerpt } from "../helpers";
 import Spinner from "../components/Spinner";
+import { ObjectId } from "mongoose";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -33,6 +35,12 @@ const Dashboard = () => {
 
   if (loading) {
     return <Spinner />;
+  }
+
+  const handleDelete = (id: ObjectId) => {
+    if (window.confirm("Are you sure you want to delete this tour?")) {
+      dispatch(deleteTour(id))
+    }
   }
 
   return (
@@ -74,7 +82,7 @@ const Dashboard = () => {
                         icon="trash"
                         style={{ color: "#dd4b39" }}
                         size="lg"
-                        onClick={() => dispatch(deleteTour(item._id))}
+                        onClick={() => handleDelete(item._id)}
                       />
                     </MDBBtn>
                     <Link to={`/edit-tour/${item._id}`}>
