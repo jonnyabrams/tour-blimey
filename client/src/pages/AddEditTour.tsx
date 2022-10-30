@@ -56,6 +56,7 @@ const AddEditTour = () => {
     if (title && description && tags) {
       const createdTourData = { ...tourData, name: user?.user?.name, creator: user?.user?._id };
       dispatch(createTour(createdTourData));
+      toast.success("Tour successfully created!")
       navigate("/");
     }
     handleClear();
