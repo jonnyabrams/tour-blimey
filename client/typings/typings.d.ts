@@ -49,6 +49,15 @@ export interface ICreateTourData {
   _id?: ObjectId;
 }
 
+export interface IUpdateTourData {
+  creator?: ObjectId;
+  title?: string;
+  description?: string;
+  tags?: string[];
+  imageFile?: string;
+  _id?: ObjectId;
+}
+
 export interface IUser {
   user: UserType;
   token: string;

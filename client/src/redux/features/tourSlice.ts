@@ -4,6 +4,7 @@ import { ObjectId } from "mongoose";
 import {
   ICreateTourData,
   IToursState,
+  IUpdateTourData,
   TourType,
 } from "../../../typings/typings";
 
@@ -42,6 +43,20 @@ export const deleteTour = createAsyncThunk(
   "tour/deleteTour",
   async (id: ObjectId) => {
     const response = await api.deleteTour(id);
+    return response.data;
+  }
+);
+
+export const updateTour = createAsyncThunk(
+  "tour/updateTour",
+  async ({
+    updatedTourData,
+    id,
+  }: {
+    updatedTourData: IUpdateTourData;
+    id: ObjectId;
+  }) => {
+    const response = await api.updateTour(updatedTourData, id);
     return response.data;
   }
 );
@@ -120,6 +135,7 @@ const tourSlice = createSlice({
     builder.addCase(deleteTour.fulfilled, (state, action) => {
       state.loading = false;
       console.log("action", action);
+      // only need to destructure one level as only one argument
       const { arg } = action.meta;
       if (arg) {
         state.userTours = state.userTours.filter(
@@ -129,6 +145,29 @@ const tourSlice = createSlice({
       }
     });
     builder.addCase(deleteTour.rejected, (state, Error) => {
+      state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
+    });
+    builder.addCase(updateTour.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateTour.fulfilled, (state, action) => {
+      state.loading = false;
+      // need to destructure two levels as there's more than one argument
+      const {
+        arg: { id },
+      } = action.meta;
+      if (id) {
+        state.userTours = state.userTours.map((item: TourType) =>
+          item._id === id ? action.payload : item
+        );
+        state.tours = state.tours.map((item: TourType) =>
+          item._id === id ? action.payload : item
+        );
+      }
+    });
+    builder.addCase(updateTour.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
       state.error = "Something went wrong";
