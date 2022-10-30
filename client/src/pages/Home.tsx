@@ -2,6 +2,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 import { useEffect } from "react";
 
 import { TourType } from "../../typings/typings";
+import Spinner from "../components/Spinner";
 import TourCard from "../components/TourCard";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { getAllTours } from "../redux/features/tourSlice";
@@ -16,7 +17,7 @@ const Home = () => {
   }, []);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Spinner />;
   }
 
   return (

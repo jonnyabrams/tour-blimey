@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { getToursByUser } from "../redux/features/tourSlice";
 import { TourType } from "../../typings/typings";
 import { excerpt } from "../helpers";
+import Spinner from "../components/Spinner";
 
 const Dashboard = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -29,6 +30,11 @@ const Dashboard = () => {
       dispatch(getToursByUser(userId));
     }
   }, [userId]);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div style={{ margin: "auto", padding: "120px", alignContent: "center" }}>
       <h4 className="text-center">Dashboard: {user?.user?.name}</h4>
