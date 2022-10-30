@@ -9,11 +9,11 @@ import {
 } from "mdb-react-ui-kit";
 import FileBase from "react-file-base64";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { ICreateTourData } from "../../typings/typings";
-import { createTour } from "../redux/features/tourSlice";
+import { ICreateTourData, TourType } from "../../typings/typings";
+import { createTour, updateTour } from "../redux/features/tourSlice";
 
 interface IFormData {
   title: string;
@@ -31,11 +31,30 @@ const initialState: IFormData = {
 
 const AddEditTour = () => {
   const [tourData, setTourData] = useState<ICreateTourData>(initialState);
-  const { error, loading } = useAppSelector((state) => state.tour);
+  // use userTours instead of tours as navigating from dashboard (where it gets populated) not home page
+  const { error, loading, userTours } = useAppSelector((state) => state.tour);
   const { user } = useAppSelector((state) => state.auth);
-  const { title, description, tags } = tourData;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const { title, description, tags } = tourData;
+  const { id } = useParams();
+
+  // only runs when we have an id in params, ie. when editing tour
+  useEffect(() => {
+    if (id) {
+      const singleTour = userTours.find(
+        (tour: TourType) => tour._id.toString() === id
+      );
+      singleTour &&
+        setTourData({
+          title: singleTour.title,
+          description: singleTour.description,
+          tags: singleTour.tags,
+          imageFile: singleTour.imageFile,
+        });
+    }
+  }, [id]);
 
   // only runs if there's an error
   useEffect(() => {
@@ -54,10 +73,25 @@ const AddEditTour = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (title && description && tags) {
-      const createdTourData = { ...tourData, name: user?.user?.name, creator: user?.user?._id };
-      dispatch(createTour(createdTourData));
-      toast.success("Tour successfully created!")
-      navigate("/");
+      const createdTourData = {
+        ...tourData,
+        name: user?.user?.name,
+        creator: user?.user?._id,
+      };
+      if (!id) {
+        dispatch(createTour(createdTourData));
+        toast.success("Tour successfully created!");
+        navigate("/");
+      } else {
+        const currentTour = userTours.find(
+          (tour: TourType) => tour._id.toString() === id
+        );
+        dispatch(
+          updateTour({ updatedTourData: createdTourData, id: currentTour?._id })
+        );
+        toast.success("Tour successfully updated!");
+        navigate(`/tour/${id}`);
+      }
     }
     handleClear();
   };
@@ -78,7 +112,7 @@ const AddEditTour = () => {
       className="container"
     >
       <MDBCard alignment="center">
-        <h5>Add Tour</h5>
+        {id ? <h5>Edit Tour</h5> : <h5>Add Tour</h5>}
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} className="row g-3" noValidate>
             <div className="col-md-12">
@@ -124,7 +158,7 @@ const AddEditTour = () => {
               />
             </div>
             <div className="col-12">
-              <MDBBtn style={{ width: "100%" }}>Submit</MDBBtn>
+              <MDBBtn style={{ width: "100%" }}>{id ? "Update" : "Submit"}</MDBBtn>
               <MDBBtn
                 style={{ width: "100%" }}
                 className="mt-2"
