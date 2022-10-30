@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { getToursByUser } from "../redux/features/tourSlice";
+import { deleteTour, getToursByUser } from "../redux/features/tourSlice";
 import { TourType } from "../../typings/typings";
 import { excerpt } from "../helpers";
 import Spinner from "../components/Spinner";
@@ -74,6 +74,7 @@ const Dashboard = () => {
                         icon="trash"
                         style={{ color: "#dd4b39" }}
                         size="lg"
+                        onClick={() => dispatch(deleteTour(item._id))}
                       />
                     </MDBBtn>
                     <Link to={`/edit-tour/${item._id}`}>
