@@ -14,6 +14,7 @@ import { useAppDispatch } from "./hooks";
 import { setUser } from "./redux/features/authSlice";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -60,6 +61,7 @@ const App = () => {
               </PrivateRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
