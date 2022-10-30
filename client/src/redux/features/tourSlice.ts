@@ -38,6 +38,14 @@ export const getTour = createAsyncThunk(
   }
 );
 
+export const deleteTour = createAsyncThunk(
+  "tour/deleteTour",
+  async (id: ObjectId) => {
+    const response = await api.deleteTour(id);
+    return response.data;
+  }
+);
+
 export const getToursByUser = createAsyncThunk(
   "tour/getToursByUser",
   async (id: ObjectId) => {
@@ -102,6 +110,25 @@ const tourSlice = createSlice({
       state.userTours = action.payload;
     });
     builder.addCase(getToursByUser.rejected, (state, Error) => {
+      state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
+    });
+    builder.addCase(deleteTour.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(deleteTour.fulfilled, (state, action) => {
+      state.loading = false;
+      console.log("action", action);
+      const { arg } = action.meta;
+      if (arg) {
+        state.userTours = state.userTours.filter(
+          (item: TourType) => item._id !== arg
+        );
+        state.tours = state.tours.filter((item: TourType) => item._id !== arg);
+      }
+    });
+    builder.addCase(deleteTour.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
       state.error = "Something went wrong";

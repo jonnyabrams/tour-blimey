@@ -11,4 +11,5 @@ export const signIn = (formData: ILogin) => API.post("/user/login", formData);
 export const createTour = (tourData: ICreateTourData) => API.post("/tour", tourData)
 export const getAllTours = () => API.get("/tour")
 export const getTour = (id: ObjectId) => API.get(`/tour/${id}`)
+export const deleteTour = (id: ObjectId) => API.delete(`/tour/${id}`)
 export const getToursByUser = (id: ObjectId) => API.get(`/tour/userTours/${id}`)
