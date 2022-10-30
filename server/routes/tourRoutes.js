@@ -1,4 +1,5 @@
 import express from "express";
+
 import { createTour, getAllTours, getTour, getToursByUser } from "../controllers/tour.js";
 
 const router = express.Router();

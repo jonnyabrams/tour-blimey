@@ -22,7 +22,7 @@ import Spinner from "../components/Spinner";
 const Dashboard = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { userTours, loading } = useAppSelector((state) => state.tour);
-  const userId = user?.user._id;
+  const userId = user?.user?._id;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
