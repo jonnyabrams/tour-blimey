@@ -39,9 +39,10 @@ const Dashboard = () => {
 
   const handleDelete = (id: ObjectId) => {
     if (window.confirm("Are you sure you want to delete this tour?")) {
-      dispatch(deleteTour(id))
+      dispatch(deleteTour(id));
+      toast.success("Tour deleted successfully");
     }
-  }
+  };
 
   return (
     <div style={{ margin: "auto", padding: "120px", alignContent: "center" }}>
