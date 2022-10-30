@@ -52,7 +52,7 @@ mongod --dbpath $HOME/mongodb-data
 Set your MongoDB URI:
 
 ```
-echo MONGO_URI=mongodb://localhost:27017/bookface >> .env
+echo MONGO_URI=mongodb://localhost:27017/tour-blimey >> .env
 ```
 
 ---
