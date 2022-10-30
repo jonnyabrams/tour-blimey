@@ -8,6 +8,7 @@ Users can sign up, sign in, see a list of all tours posted, add their own tours,
 
 ## Video Demo
 
+https://user-images.githubusercontent.com/97295867/198896436-d836b11f-d3e4-4eaf-bc8a-477812412d1c.mp4
 
 ---
 
