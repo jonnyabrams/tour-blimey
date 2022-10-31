@@ -34,6 +34,7 @@ const App = () => {
         <ToastContainer autoClose={1000} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route
