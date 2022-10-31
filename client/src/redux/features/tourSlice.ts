@@ -15,6 +15,7 @@ const initialState: IToursState = {
   tours: [],
   userTours: [],
   tagTours: [],
+  relatedTours: [],
   error: "",
   loading: false,
 };
@@ -82,6 +83,14 @@ export const getToursByTag = createAsyncThunk(
   "tour/getToursByTag",
   async (tag: string) => {
     const response = await api.getToursByTag(tag);
+    return response.data;
+  }
+);
+
+export const getRelatedTours = createAsyncThunk(
+  "tour/getRelatedTours",
+  async (tags: string[]) => {
+    const response = await api.getRelatedTours(tags);
     return response.data;
   }
 );
@@ -215,6 +224,21 @@ const tourSlice = createSlice({
       }
     );
     builder.addCase(getToursByTag.rejected, (state, Error) => {
+      state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
+    });
+    builder.addCase(getRelatedTours.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getRelatedTours.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.relatedTours = action.payload;
+      }
+    );
+    builder.addCase(getRelatedTours.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
       state.error = "Something went wrong";

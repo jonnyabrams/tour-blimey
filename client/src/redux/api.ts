@@ -26,3 +26,4 @@ export const getToursByUser = (id: ObjectId) =>
 export const getToursBySearch = (searchQuery: string) =>
   API.get(`/tour/search?searchQuery=${searchQuery}`);
   export const getToursByTag = (tag: string) => API.get(`/tour/tag/${tag}`);
+  export const getRelatedTours = (tags: string[]) => API.post(`/tour/related`, tags);
