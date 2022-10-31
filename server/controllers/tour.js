@@ -87,12 +87,23 @@ export const updateTour = async (req, res) => {
   }
 };
 
-export const getTourBySearch = async (req, res) => {
+export const getToursBySearch = async (req, res) => {
   const { searchQuery } = req.query;
   try {
     const title = new RegExp(searchQuery, "i");
     const tours = await Tour.find({ title });
     res.json(tours);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+    console.log(error);
+  }
+};
+
+export const getToursByTag = async (req, res) => {
+  const { tag } = req.params;
+  try {
+    const tours = await Tour.find({ tags: { $in: tag } });
+    res.json(tours)
   } catch (error) {
     res.status(404).json({ message: error.message });
     console.log(error);
