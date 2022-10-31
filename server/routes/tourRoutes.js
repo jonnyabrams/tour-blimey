@@ -7,7 +7,7 @@ const router = express.Router();
 // had to move search route to top for it to work - info in 3rd answer here: https://stackoverflow.com/questions/14940660/whats-mongoose-error-cast-to-objectid-failed-for-value-xxx-at-path-id
 router.get("/search", getToursBySearch)
 router.get("/tag/:tag", getToursByTag)
-router.get("/related", getRelatedTours)
+router.post("/related", getRelatedTours)
 router.post("/", createTour);
 router.get("/", getAllTours);
 router.get("/:id", getTour);

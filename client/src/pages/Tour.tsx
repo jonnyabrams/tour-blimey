@@ -11,13 +11,19 @@ import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getTour } from "../redux/features/tourSlice";
+import { getRelatedTours, getTour } from "../redux/features/tourSlice";
 import { ObjectId } from "mongoose";
 
 const Tour = () => {
   const dispatch = useAppDispatch();
   const { tour } = useAppSelector((state) => state.tour);
   const { id } = useParams();
+  const tags = tour?.tags
+
+  // runs when we have the tags
+  useEffect(() => {
+    tags && dispatch(getRelatedTours(tags))
+  }, [tags])
 
   // runs once we have the id
   useEffect(() => {
