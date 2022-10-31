@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createTour, deleteTour, getAllTours, getTour, getToursByUser, updateTour } from "../controllers/tour.js";
+import { createTour, deleteTour, getAllTours, getTour, getTourBySearch, getToursByUser, updateTour } from "../controllers/tour.js";
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.get("/:id", getTour);
 router.get("/userTours/:id", getToursByUser);
 router.delete("/:id", deleteTour);
 router.patch("/:id", updateTour);
+router.get("/search", getTourBySearch)
 
 export default router;

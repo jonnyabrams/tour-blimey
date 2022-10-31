@@ -86,3 +86,15 @@ export const updateTour = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getTourBySearch = async (req, res) => {
+  const { searchQuery } = req.query;
+  try {
+    const title = new RegExp(searchQuery, "i");
+    const tours = await Tour.find({ title });
+    res.json(tours);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+    console.log(error);
+  }
+};
