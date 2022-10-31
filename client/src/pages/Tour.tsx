@@ -13,10 +13,11 @@ import moment from "moment";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getRelatedTours, getTour } from "../redux/features/tourSlice";
 import { ObjectId } from "mongoose";
+import RelatedTours from "../components/RelatedTours";
 
 const Tour = () => {
   const dispatch = useAppDispatch();
-  const { tour } = useAppSelector((state) => state.tour);
+  const { tour, relatedTours } = useAppSelector((state) => state.tour);
   const { id } = useParams();
   const tags = tour?.tags
 
@@ -71,6 +72,7 @@ const Tour = () => {
               {tour?.description}
             </MDBCardText>
           </MDBCardBody>
+          <RelatedTours relatedTours={relatedTours} tourId={tour?._id} />
         </MDBCard>
       </MDBContainer>
     </>
