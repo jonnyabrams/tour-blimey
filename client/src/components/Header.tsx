@@ -28,6 +28,7 @@ const Header = () => {
     if (search) {
       dispatch(searchTours(search));
       navigate(`/tours/search?searchQuery=${search}`);
+      setSearch("");
     } else {
       navigate("/");
     }
@@ -109,7 +110,12 @@ const Header = () => {
             />
           </form>
           <div style={{ marginTop: "5px", marginLeft: "5px" }}>
-            <MDBIcon style={{cursor: "pointer"}} fas icon="search" onClick={handleSubmit} />
+            <MDBIcon
+              style={{ cursor: "pointer" }}
+              fas
+              icon="search"
+              onClick={handleSubmit}
+            />
           </div>
         </MDBCollapse>
       </MDBContainer>
