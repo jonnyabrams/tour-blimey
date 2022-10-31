@@ -11,7 +11,7 @@ import FileBase from "react-file-base64";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { ICreateTourData, TourType } from "../../typings/typings";
 import { createTour, updateTour } from "../redux/features/tourSlice";
 
@@ -158,7 +158,9 @@ const AddEditTour = () => {
               />
             </div>
             <div className="col-12">
-              <MDBBtn style={{ width: "100%" }}>{id ? "Update" : "Submit"}</MDBBtn>
+              <MDBBtn style={{ width: "100%" }}>
+                {id ? "Update" : "Submit"}
+              </MDBBtn>
               <MDBBtn
                 style={{ width: "100%" }}
                 className="mt-2"

@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { login } from "../redux/features/authSlice";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const initialState = {
   email: "",
@@ -38,7 +38,7 @@ const Login = () => {
     // can only log in if email & password are both present
     if (email && password) {
       dispatch(login(formValue));
-      navigate("/")
+      navigate("/");
     }
   };
 

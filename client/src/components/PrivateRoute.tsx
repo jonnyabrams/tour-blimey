@@ -1,4 +1,4 @@
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "../redux/hooks";
 import LoadingToRedirect from "./LoadingToRedirect";
 
 const PrivateRoute = ({ children }: { children: any }) => {

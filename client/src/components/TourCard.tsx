@@ -9,7 +9,7 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 import { TourType } from "../../typings/typings";
-import { excerpt } from "../helpers";
+import { excerpt } from "../utils/helpers";
 
 const TourCard = ({ tour }: { tour: TourType }) => {
   return (
@@ -33,7 +33,7 @@ const TourCard = ({ tour }: { tour: TourType }) => {
         <MDBCardBody>
           <MDBCardTitle className="text-start">{tour.title}</MDBCardTitle>
           <MDBCardText className="text-start">
-            {excerpt(tour.description)}{" "}
+            {excerpt(tour.description, 45)}{" "}
             <Link to={`/tour/${tour._id}`}>Read more</Link>
           </MDBCardText>
         </MDBCardBody>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { TourType } from "../../typings/typings";
 import Spinner from "../components/Spinner";
 import TourCard from "../components/TourCard";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getAllTours } from "../redux/features/tourSlice";
 
 const Home = () => {

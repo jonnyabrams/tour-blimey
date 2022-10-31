@@ -13,10 +13,10 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { deleteTour, getToursByUser } from "../redux/features/tourSlice";
 import { TourType } from "../../typings/typings";
-import { excerpt } from "../helpers";
+import { excerpt } from "../utils/helpers";
 import Spinner from "../components/Spinner";
 import { ObjectId } from "mongoose";
 import { toast } from "react-toastify";
@@ -67,7 +67,7 @@ const Dashboard = () => {
                   </MDBCardTitle>
                   <MDBCardText className="text-start">
                     <small className="text-muted">
-                      {excerpt(item.description)}
+                      {excerpt(item.description, 40)}
                     </small>
                   </MDBCardText>
                   <div

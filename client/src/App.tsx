@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Tour from "./pages/Tour";
 import AddEditTour from "./pages/AddEditTour";
-import { useAppDispatch } from "./hooks";
+import { useAppDispatch } from "./redux/hooks";
 import { setUser } from "./redux/features/authSlice";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";

@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { register } from "../redux/features/authSlice";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const initialState = {
   firstName: "",
@@ -44,7 +44,7 @@ const Register = () => {
 
     if (firstName && lastName && email && password && confirmPassword) {
       dispatch(register(formValue));
-      navigate("/")
+      navigate("/");
     }
   };
 

@@ -10,7 +10,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getTour } from "../redux/features/tourSlice";
 import { ObjectId } from "mongoose";
 

@@ -12,7 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setLogout } from "../redux/features/authSlice";
 import { searchTours } from "../redux/features/tourSlice";
 
