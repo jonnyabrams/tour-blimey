@@ -16,8 +16,13 @@ import { setLogout } from "../redux/features/authSlice";
 
 const Header = () => {
   const [show, setShow] = useState(false);
+  const [search, setSearch] = useState("");
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
 
   const handleLogout = () => {
     dispatch(setLogout());
@@ -44,7 +49,7 @@ const Header = () => {
         <MDBCollapse show={show} navbar>
           <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
             {user?.user?._id && (
-              <h5 style={{ marginRight: "30px", marginTop: "17px" }}>
+              <h5 style={{ marginRight: "30px", marginTop: "27px" }}>
                 Logged in as {user?.user?.name}
               </h5>
             )}
@@ -85,6 +90,18 @@ const Header = () => {
               </MDBNavbarItem>
             )}
           </MDBNavbarNav>
+          <form className="d-flex input-group w-auto" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search tours"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
+          <div style={{ marginTop: "5px", marginLeft: "5px" }}>
+            <MDBIcon fas icon="search" />
+          </div>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
