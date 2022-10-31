@@ -15,6 +15,7 @@ import { setUser } from "./redux/features/authSlice";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import NotFound from "./pages/NotFound";
+import TagTours from "./pages/TagTours";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tours/search" element={<Home />} />
+          <Route path="/tours/tag/:tag" element={<TagTours />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route

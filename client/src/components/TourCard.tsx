@@ -26,7 +26,9 @@ const TourCard = ({ tour }: { tour: TourType }) => {
         </Link>
         <div className="top-left">{tour.name}</div>
         <span className="text-start tag-card">
-          {tour.tags.map((tag) => `#${tag} `)}
+          {tour.tags.map((tag) => (
+            <Link to={`/tours/tag/${tag}`}>#{tag} </Link>
+          ))}
         </span>
         <MDBCardBody>
           <MDBCardTitle className="text-start">{tour.title}</MDBCardTitle>

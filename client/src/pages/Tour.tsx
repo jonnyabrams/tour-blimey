@@ -7,7 +7,7 @@ import {
   MDBContainer,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -44,7 +44,9 @@ const Tour = () => {
             </span>
             <div style={{ float: "left" }}>
               <span className="text-start">
-                {tour?.tags.map((item) => `#${item} `)}
+                {tour?.tags.map((tag) => (
+                  <Link to={`/tours/tag/${tag}`}>#{tag} </Link>
+                ))}
               </span>
             </div>
             <br />
