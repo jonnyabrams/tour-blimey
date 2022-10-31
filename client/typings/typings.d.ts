@@ -73,6 +73,7 @@ export interface IToursState {
   tour: TourType | null;
   tours: Subscription<TourType[]>;
   userTours: Subscription<TourType[]>;
+  tagTours: Subscription<TourType[]>;
   error: string;
   loading: boolean;
 }
