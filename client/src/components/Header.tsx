@@ -10,19 +10,28 @@ import {
   MDBCollapse,
   MDBNavbarBrand,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { setLogout } from "../redux/features/authSlice";
+import { searchTours } from "../redux/features/tourSlice";
 
 const Header = () => {
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+    if (search) {
+      dispatch(searchTours(search));
+      navigate(`/tours/search?searchQuery=${search}`);
+    } else {
+      navigate("/");
+    }
+  };
 
   const handleLogout = () => {
     dispatch(setLogout());
@@ -100,7 +109,7 @@ const Header = () => {
             />
           </form>
           <div style={{ marginTop: "5px", marginLeft: "5px" }}>
-            <MDBIcon fas icon="search" />
+            <MDBIcon style={{cursor: "pointer"}} fas icon="search" onClick={handleSubmit} />
           </div>
         </MDBCollapse>
       </MDBContainer>

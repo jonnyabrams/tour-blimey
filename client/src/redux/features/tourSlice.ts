@@ -185,7 +185,7 @@ const tourSlice = createSlice({
     });
     builder.addCase(
       searchTours.fulfilled,
-      (state, action: PayloadAction<TourType[]>) => {
+      (state, action) => {
         state.loading = false;
         state.tours = action.payload;
       }
