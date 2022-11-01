@@ -24,7 +24,7 @@ const TourCard = ({ tour }: { tour: TourType }) => {
   const Likes = () => {
     // if there are likes
     if (tour.likes.length > 0) {
-      // if the likes include current user
+      // if the likes include current user (icon is filled)
       return tour.likes.find((like) => like === userId) ? (
         <>
           <MDBIcon fas icon="thumbs-up" />
@@ -43,7 +43,7 @@ const TourCard = ({ tour }: { tour: TourType }) => {
           )}
         </>
       ) : (
-        // if likes exist but don't include current user
+        // if likes exist but don't include current user (icon not filled)
         <>
           <MDBIcon far icon="thumbs-up" />
           &nbsp;{tour.likes.length} {tour.likes.length === 1 ? "like" : "likes"}
@@ -85,9 +85,15 @@ const TourCard = ({ tour }: { tour: TourType }) => {
             style={{ float: "right" }}
             tag="a"
             color="none"
-            onClick={handleLike}
+            onClick={!user?.user?._id ? null : handleLike}
           >
-            {user?.user?._id && <Likes />}
+            {!user?.user?._id ? (
+              <MDBTooltip title="Please log in to like tour" tag="a">
+                <Likes />
+              </MDBTooltip>
+            ) : (
+              <Likes />
+            )}
           </MDBBtn>
         </span>
         <MDBCardBody>
