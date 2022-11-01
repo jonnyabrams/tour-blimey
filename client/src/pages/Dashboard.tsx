@@ -46,8 +46,20 @@ const Dashboard = () => {
 
   return (
     <div style={{ margin: "auto", padding: "120px", alignContent: "center" }}>
-      <h4 className="text-center">Dashboard: {user?.user?.name}</h4>
-      <hr style={{ maxWidth: "570px" }} />
+      {userTours.length === 0 && (
+        <>
+          <h3>No tours yet</h3>
+          <Link to="/add-tour">Add one here!</Link>
+        </>
+      )}
+
+      {userTours.length > 0 && (
+        <>
+          <h5 className="text-center">Dashboard: {user?.user?.name}</h5>
+          <hr style={{ maxWidth: "570px" }} />
+        </>
+      )}
+
       {userTours &&
         userTours.map((item: TourType, index: number) => (
           <MDBCardGroup style={{ maxWidth: "600px" }} key={index}>
