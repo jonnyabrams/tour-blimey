@@ -160,7 +160,6 @@ const tourSlice = createSlice({
     });
     builder.addCase(deleteTour.fulfilled, (state, action) => {
       state.loading = false;
-      console.log("action", action);
       // only need to destructure one level as only one argument
       const { arg } = action.meta;
       if (arg) {

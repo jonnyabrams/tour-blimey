@@ -11,6 +11,7 @@ import {
   MDBNavbarBrand,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
+import decode, { JwtPayload } from "jwt-decode";
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setLogout } from "../redux/features/authSlice";
@@ -22,6 +23,14 @@ const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const token = user?.token;
+
+  if (token) {
+    const decodedToken = decode<JwtPayload>(token);
+    if (decodedToken.exp * 1000 < new Date().getTime()) {
+      dispatch(setLogout());
+    }
+  }
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
