@@ -7,6 +7,7 @@ import {
   MDBCardGroup,
   MDBBtn,
   MDBIcon,
+  MDBTooltip,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 
@@ -21,6 +22,34 @@ const TourCard = ({ tour }: { tour: TourType }) => {
   const dispatch = useAppDispatch();
 
   const Likes = () => {
+    // if there are likes
+    if (tour.likes.length > 0) {
+      // if the likes include current user
+      return tour.likes.find((like) => like === userId) ? (
+        <>
+          <MDBIcon fas icon="thumbs-up" />
+          &nbsp;
+          {/* if the likes include current user and are more than 2 */}
+          {tour.likes.length > 2 ? (
+            <MDBTooltip
+              tag="a"
+              title={`You and ${tour.likes.length - 1} others liked this`}
+            >
+              {tour.likes.length} likes
+            </MDBTooltip>
+          ) : (
+            // if the likes include current user and are 2 or less
+            `${tour.likes.length} like${tour.likes.length > 1 ? "s" : ""}`
+          )}
+        </>
+      ) : (
+        // if likes exist but don't include current user
+        <>
+          <MDBIcon far icon="thumbs-up" />
+          &nbsp;{tour.likes.length} {tour.likes.length === 1 ? "like" : "likes"}
+        </>
+      );
+    }
     return (
       <>
         <MDBIcon far icon="thumbs-up" />
@@ -58,7 +87,7 @@ const TourCard = ({ tour }: { tour: TourType }) => {
             color="none"
             onClick={handleLike}
           >
-            <Likes />
+            {user?.user?._id && <Likes />}
           </MDBBtn>
         </span>
         <MDBCardBody>
