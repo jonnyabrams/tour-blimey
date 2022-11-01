@@ -5,10 +5,13 @@ import { TourType } from "../../typings/typings";
 import Spinner from "../components/Spinner";
 import TourCard from "../components/TourCard";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getAllTours } from "../redux/features/tourSlice";
+import { getAllTours, setCurrentPage } from "../redux/features/tourSlice";
+import Pagination from "../components/Pagination";
 
 const Home = () => {
-  const { tours, loading, currentPage } = useAppSelector((state) => state.tour);
+  const { tours, loading, currentPage, numberOfPages } = useAppSelector(
+    (state) => state.tour
+  );
   const dispatch = useAppDispatch();
 
   // trigger getAllTours in tourSlice which populates state.tours, extracted above
@@ -46,6 +49,12 @@ const Home = () => {
           </MDBContainer>
         </MDBCol>
       </MDBRow>
+      <Pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        numberOfPages={numberOfPages}
+        dispatch={dispatch}
+      />
     </div>
   );
 };
