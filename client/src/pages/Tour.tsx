@@ -14,12 +14,13 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getRelatedTours, getTour } from "../redux/features/tourSlice";
 import { ObjectId } from "mongoose";
 import RelatedTours from "../components/RelatedTours";
+import DisqusThread from "../components/DisqusThread";
 
 const Tour = () => {
   const dispatch = useAppDispatch();
   const { tour, relatedTours } = useAppSelector((state) => state.tour);
   const { id } = useParams();
-  const tags = tour?.tags
+  const tags = tour?.tags;
 
   // runs once we have the id
   useEffect(() => {
@@ -31,8 +32,8 @@ const Tour = () => {
 
   // runs when we have the tags
   useEffect(() => {
-    tags && dispatch(getRelatedTours(tags))
-  }, [tags])
+    tags && dispatch(getRelatedTours(tags));
+  }, [tags]);
 
   return (
     <>
@@ -52,7 +53,9 @@ const Tour = () => {
             <div style={{ float: "left" }}>
               <span className="text-start">
                 {tour?.tags.map((tag) => (
-                  <Link key={tag} to={`/tours/tag/${tag}`}>#{tag} </Link>
+                  <Link key={tag} to={`/tours/tag/${tag}`}>
+                    #{tag}{" "}
+                  </Link>
                 ))}
               </span>
             </div>
@@ -74,6 +77,7 @@ const Tour = () => {
           </MDBCardBody>
           <RelatedTours relatedTours={relatedTours} tourId={tour?._id} />
         </MDBCard>
+        <DisqusThread id={id} title={tour?.title} path={`/tour/${id}`} />
       </MDBContainer>
     </>
   );
