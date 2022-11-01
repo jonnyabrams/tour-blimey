@@ -15,10 +15,7 @@ export type TourType = {
   creator?: ObjectId;
   tags: string[];
   imageFile: string;
-  likeCount?: {
-    type: number;
-    default: number;
-  };
+  likes?: ObjectId[];
   _id: ObjectId;
   createdAt: Date;
 };
@@ -42,10 +39,7 @@ export interface ICreateTourData {
   imageFile: string;
   name?: string;
   creator?: ObjectId;
-  likeCount?: {
-    type: number;
-    default: number;
-  };
+  likes?: ObjectId[];
   _id?: ObjectId;
 }
 

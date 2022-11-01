@@ -143,7 +143,7 @@ export const likeTour = async (req, res) => {
     }
 
     const tour = await Tour.findById(id);
-    const index = tour.likes.findIndex((id) => id === String(userId));
+    const index = await tour.likes.findIndex((id) => id === String(userId));
 
     // if userId is not in likes, push it in, else filter it out
     if (index === -1) {

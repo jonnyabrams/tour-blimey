@@ -9,22 +9,29 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
+
 import { TourType } from "../../typings/typings";
+import { likeTour } from "../redux/features/tourSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { excerpt } from "../utils/helpers";
 
 const TourCard = ({ tour }: { tour: TourType }) => {
+  const { user } = useAppSelector((state) => state.auth);
+  const userId = user?.user?._id;
+  const dispatch = useAppDispatch();
+
   const Likes = () => {
     return (
       <>
         <MDBIcon far icon="thumbs-up" />
         &nbsp;Like
       </>
-    )
-  }
+    );
+  };
 
   const handleLike = () => {
-
-  }
+    dispatch(likeTour({ id: tour._id, userId }));
+  };
 
   return (
     <MDBCardGroup>
@@ -45,7 +52,14 @@ const TourCard = ({ tour }: { tour: TourType }) => {
               #{tag}{" "}
             </Link>
           ))}
-          <MDBBtn style={{ float: "right" }} tag="a" color="none" onClick={handleLike}><Likes /></MDBBtn>
+          <MDBBtn
+            style={{ float: "right" }}
+            tag="a"
+            color="none"
+            onClick={handleLike}
+          >
+            <Likes />
+          </MDBBtn>
         </span>
         <MDBCardBody>
           <MDBCardTitle className="text-start">{tour.title}</MDBCardTitle>

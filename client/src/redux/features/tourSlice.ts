@@ -250,7 +250,7 @@ const tourSlice = createSlice({
       console.log(Error);
       state.error = "Something went wrong";
     });
-    builder.addCase(likeTour.pending, (state) => {});
+    builder.addCase(likeTour.pending, () => {});
     builder.addCase(likeTour.fulfilled, (state, action) => {
       state.loading = false;
       // need to destructure two levels as there's more than one argument
@@ -261,8 +261,8 @@ const tourSlice = createSlice({
         state.tours = state.tours.map((item: TourType) =>
           item._id === id ? action.payload : item
         );
-        state.tour = action.payload;
       }
+      console.log(action)
     });
     builder.addCase(likeTour.rejected, (state, Error) => {
       console.log(Error);
