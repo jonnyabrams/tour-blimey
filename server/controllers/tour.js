@@ -132,3 +132,31 @@ export const getRelatedTours = async (req, res) => {
     console.log(error);
   }
 };
+
+export const likeTour = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.body.userId;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ message: `Tour not found with id ${id}` });
+    }
+
+    const tour = await Tour.findById(id);
+    const index = tour.likes.findIndex((id) => id === String(userId));
+
+    // if userId is not in likes, push it in, else filter it out
+    if (index === -1) {
+      tour.likes.push(userId);
+    } else {
+      tour.likes = tour.likes.filter((id) => id !== String(userId));
+    }
+
+    const updatedTour = await Tour.findByIdAndUpdate(id, tour, { new: true });
+
+    res.status(200).json(updatedTour);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+    console.log(error);
+  }
+};
