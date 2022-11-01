@@ -1,5 +1,7 @@
 # Tour Blimey
 
+<img width="1173" alt="tour-blimey" src="https://user-images.githubusercontent.com/97295867/199311414-ea8b2ef9-1b89-4876-9448-a4274c59a25c.png">
+
 A responsive tour listings web app using TypeScript and the MERN stack (MongoDB, Express, React, Node) along with Redux Toolkit for state management.
 
 Users can sign up, sign in, see a list of all tours posted, add their own tours, edit them, delete them and sign out again. If they try to access a protected route while signed out, they will be redirected to the login page following a 5-second countdown.
@@ -9,6 +11,8 @@ Users can sign up, sign in, see a list of all tours posted, add their own tours,
 ## Video Demo
 
 https://user-images.githubusercontent.com/97295867/198896436-d836b11f-d3e4-4eaf-bc8a-477812412d1c.mp4
+
+https://user-images.githubusercontent.com/97295867/199311252-104e8ac7-5f3b-4883-a47a-9ff781919122.mp4
 
 (note to self: features to demonstrate in 2nd video - responsiveness, search, get by tags, likes, comments, pagination, related tours section, 404)
 
