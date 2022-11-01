@@ -6,8 +6,9 @@ import {
   MDBCardImage,
   MDBContainer,
   MDBIcon,
+  MDBBtn,
 } from "mdb-react-ui-kit";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -20,6 +21,7 @@ const Tour = () => {
   const dispatch = useAppDispatch();
   const { tour, relatedTours } = useAppSelector((state) => state.tour);
   const { id } = useParams();
+  const navigate = useNavigate();
   const tags = tour?.tags;
 
   // runs once we have the id
@@ -46,6 +48,14 @@ const Tour = () => {
             alt={tour?.title}
           />
           <MDBCardBody>
+            <MDBBtn
+              tag="a"
+              color="none"
+              style={{ float: "left", color: "#000" }}
+              onClick={() => navigate("/")}
+            >
+              <MDBCardImage src="/back.png" style={{ float: "left", height: "20px" }} />
+            </MDBBtn>
             <h3>{tour?.title}</h3>
             <span>
               <p className="text-start tour-name">Created by: {tour?.name}</p>
