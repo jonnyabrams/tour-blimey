@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import {
-  MDBCard,
   MDBCardTitle,
   MDBCardText,
   MDBCardBody,
@@ -31,6 +30,8 @@ const Dashboard = () => {
     if (userId) {
       dispatch(getToursByUser(userId));
     }
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   if (loading) {

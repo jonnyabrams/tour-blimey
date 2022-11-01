@@ -30,11 +30,15 @@ const Tour = () => {
       // ts error as id is a string from useParams, so this to convert back to ObjectId
       dispatch(getTour(id as unknown as ObjectId));
     }
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // runs when we have the tags
   useEffect(() => {
     tags && dispatch(getRelatedTours(tags));
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
 
   return (

@@ -26,6 +26,8 @@ const App = () => {
   // on each render, dispatch user found
   useEffect(() => {
     dispatch(setUser(user));
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -30,7 +30,7 @@ const initialState: IFormData = {
 const AddEditTour = () => {
   const [tourData, setTourData] = useState<ICreateTourData>(initialState);
   // use userTours instead of tours as navigating from dashboard (where it gets populated) not home page
-  const { error, loading, userTours } = useAppSelector((state) => state.tour);
+  const { error, userTours } = useAppSelector((state) => state.tour);
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -52,6 +52,8 @@ const AddEditTour = () => {
           imageFile: singleTour.imageFile,
         });
     }
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // only runs if there's an error

@@ -26,6 +26,8 @@ const Home = () => {
   // trigger getAllTours in tourSlice which populates state.tours, extracted above
   useEffect(() => {
     dispatch(getAllTours(currentPage));
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   if (loading) {

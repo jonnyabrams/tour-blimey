@@ -29,6 +29,8 @@ const TagTours = () => {
     if (tag) {
       dispatch(getToursByTag(tag));
     }
+    // quick fix to disable warning about missing dependency 'dispatch'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tag]);
 
   if (loading) {
