@@ -8,13 +8,13 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getAllTours } from "../redux/features/tourSlice";
 
 const Home = () => {
-  const { tours, loading } = useAppSelector((state) => state.tour);
+  const { tours, loading, currentPage } = useAppSelector((state) => state.tour);
   const dispatch = useAppDispatch();
 
   // trigger getAllTours in tourSlice which populates state.tours, extracted above
   useEffect(() => {
-    dispatch(getAllTours());
-  }, []);
+    dispatch(getAllTours(currentPage));
+  }, [currentPage]);
 
   if (loading) {
     return <Spinner />;

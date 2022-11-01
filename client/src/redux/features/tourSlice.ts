@@ -16,6 +16,8 @@ const initialState: IToursState = {
   userTours: [],
   tagTours: [],
   relatedTours: [],
+  currentPage: 1,
+  numberOfPages: null,
   error: "",
   loading: false,
 };
@@ -28,10 +30,13 @@ export const createTour = createAsyncThunk(
   }
 );
 
-export const getAllTours = createAsyncThunk("tour/getAllTours", async () => {
-  const response = await api.getAllTours();
-  return response.data;
-});
+export const getAllTours = createAsyncThunk(
+  "tour/getAllTours",
+  async (page: number) => {
+    const response = await api.getAllTours(page);
+    return response.data;
+  }
+);
 
 export const getTour = createAsyncThunk(
   "tour/getTour",
@@ -98,7 +103,11 @@ export const getRelatedTours = createAsyncThunk(
 const tourSlice = createSlice({
   name: "tour",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
     builder.addCase(createTour.pending, (state) => {
@@ -119,13 +128,12 @@ const tourSlice = createSlice({
     builder.addCase(getAllTours.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      getAllTours.fulfilled,
-      (state, action: PayloadAction<TourType[]>) => {
-        state.loading = false;
-        state.tours = action.payload;
-      }
-    );
+    builder.addCase(getAllTours.fulfilled, (state, action) => {
+      state.loading = false;
+      state.tours = action.payload.data;
+      state.numberOfPages = action.payload.numberOfPages;
+      state.currentPage = action.payload.currentPage;
+    });
     builder.addCase(getAllTours.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
@@ -201,13 +209,10 @@ const tourSlice = createSlice({
     builder.addCase(searchTours.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      searchTours.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.tours = action.payload;
-      }
-    );
+    builder.addCase(searchTours.fulfilled, (state, action) => {
+      state.loading = false;
+      state.tours = action.payload;
+    });
     builder.addCase(searchTours.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
@@ -216,13 +221,10 @@ const tourSlice = createSlice({
     builder.addCase(getToursByTag.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      getToursByTag.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.tagTours = action.payload;
-      }
-    );
+    builder.addCase(getToursByTag.fulfilled, (state, action) => {
+      state.loading = false;
+      state.tagTours = action.payload;
+    });
     builder.addCase(getToursByTag.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
@@ -231,13 +233,10 @@ const tourSlice = createSlice({
     builder.addCase(getRelatedTours.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      getRelatedTours.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.relatedTours = action.payload;
-      }
-    );
+    builder.addCase(getRelatedTours.fulfilled, (state, action) => {
+      state.loading = false;
+      state.relatedTours = action.payload;
+    });
     builder.addCase(getRelatedTours.rejected, (state, Error) => {
       state.loading = false;
       console.log(Error);
@@ -245,5 +244,7 @@ const tourSlice = createSlice({
     });
   },
 });
+
+export const { setCurrentPage } = tourSlice.actions;
 
 export default tourSlice.reducer;

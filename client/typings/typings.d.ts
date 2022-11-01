@@ -75,6 +75,8 @@ export interface IToursState {
   userTours: Subscription<TourType[]>;
   tagTours: Subscription<TourType[]>;
   relatedTours: Subscription<TourType[]>;
+  currentPage: number;
+  numberOfPages: null;
   error: string;
   loading: boolean;
 }
