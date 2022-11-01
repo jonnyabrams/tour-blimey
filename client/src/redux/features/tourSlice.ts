@@ -108,7 +108,7 @@ const tourSlice = createSlice({
       createTour.fulfilled,
       (state, action: PayloadAction<ICreateTourData>) => {
         state.loading = false;
-        state.tours = [action.payload];
+        state.tours = [...state.tours, action.payload];
       }
     );
     builder.addCase(createTour.rejected, (state, Error) => {
@@ -190,6 +190,7 @@ const tourSlice = createSlice({
         state.tours = state.tours.map((item: TourType) =>
           item._id === id ? action.payload : item
         );
+        state.tour = action.payload;
       }
     });
     builder.addCase(updateTour.rejected, (state, Error) => {

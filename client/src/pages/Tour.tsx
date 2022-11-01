@@ -21,11 +21,6 @@ const Tour = () => {
   const { id } = useParams();
   const tags = tour?.tags
 
-  // runs when we have the tags
-  useEffect(() => {
-    tags && dispatch(getRelatedTours(tags))
-  }, [tags])
-
   // runs once we have the id
   useEffect(() => {
     if (id) {
@@ -33,6 +28,11 @@ const Tour = () => {
       dispatch(getTour(id as unknown as ObjectId));
     }
   }, [id]);
+
+  // runs when we have the tags
+  useEffect(() => {
+    tags && dispatch(getRelatedTours(tags))
+  }, [tags])
 
   return (
     <>
@@ -52,7 +52,7 @@ const Tour = () => {
             <div style={{ float: "left" }}>
               <span className="text-start">
                 {tour?.tags.map((tag) => (
-                  <Link to={`/tours/tag/${tag}`}>#{tag} </Link>
+                  <Link key={tag} to={`/tours/tag/${tag}`}>#{tag} </Link>
                 ))}
               </span>
             </div>

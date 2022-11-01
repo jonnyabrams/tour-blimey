@@ -5,7 +5,6 @@ import {
   MDBCardText,
   MDBCardImage,
   MDBCardGroup,
-  MDBCardOverlay,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 import { TourType } from "../../typings/typings";
@@ -27,7 +26,7 @@ const TourCard = ({ tour }: { tour: TourType }) => {
         <div className="top-left">{tour.name}</div>
         <span className="text-start tag-card">
           {tour.tags.map((tag) => (
-            <Link to={`/tours/tag/${tag}`}>#{tag} </Link>
+            <Link key={tag} to={`/tours/tag/${tag}`}>#{tag} </Link>
           ))}
         </span>
         <MDBCardBody>

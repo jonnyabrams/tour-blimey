@@ -4,8 +4,6 @@ import {
   MDBCardBody,
   MDBValidation,
   MDBBtn,
-  MDBInput,
-  MDBSpinner,
 } from "mdb-react-ui-kit";
 import FileBase from "react-file-base64";
 import { toast } from "react-toastify";
