@@ -100,6 +100,14 @@ export const getRelatedTours = createAsyncThunk(
   }
 );
 
+export const likeTour = createAsyncThunk(
+  "tour/likeTour",
+  async ({ id, userId }: { id: ObjectId; userId: ObjectId }) => {
+    const response = await api.likeTour(id, userId);
+    return response.data;
+  }
+);
+
 const tourSlice = createSlice({
   name: "tour",
   initialState,
@@ -239,6 +247,24 @@ const tourSlice = createSlice({
     });
     builder.addCase(getRelatedTours.rejected, (state, Error) => {
       state.loading = false;
+      console.log(Error);
+      state.error = "Something went wrong";
+    });
+    builder.addCase(likeTour.pending, (state) => {});
+    builder.addCase(likeTour.fulfilled, (state, action) => {
+      state.loading = false;
+      // need to destructure two levels as there's more than one argument
+      const {
+        arg: { id },
+      } = action.meta;
+      if (id) {
+        state.tours = state.tours.map((item: TourType) =>
+          item._id === id ? action.payload : item
+        );
+        state.tour = action.payload;
+      }
+    });
+    builder.addCase(likeTour.rejected, (state, Error) => {
       console.log(Error);
       state.error = "Something went wrong";
     });
